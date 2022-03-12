@@ -1,0 +1,17 @@
+sceneSetups:
+- path: Assets/Scenes/Subtraction/Subtraction.unity
+  isLoaded: 0
+  isActive: 0
+  isSubScene: 0
+- path: Assets/Scenes/UI/Login_Screen.unity
+  isLoaded: 1
+  isActive: 1
+  isSubScene: 0
+- path: Assets/Scenes/UI/Registration_Screen.unity
+  isLoaded: 0
+  isActive: 0
+  isSubScene: 0
+- path: Assets/Scenes/UI/Topic_Chara_Selection.unity
+  isLoaded: 0
+  isActive: 0
+  isSubScene: 0
