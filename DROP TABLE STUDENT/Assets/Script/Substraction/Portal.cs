@@ -20,6 +20,7 @@ public class Portal : MonoBehaviour
     // Start is called before the first frame update
     private void Awake()
     {
+       
         validateText.GetComponent<Text>().enabled = false;
         streakText.text = "" + (streakShownValue);
     }
@@ -30,12 +31,20 @@ public class Portal : MonoBehaviour
     }
 
     // Update is called once per frame
-    IEnumerator waitForSec(bool correct)
+    IEnumerator waitForSec(bool correct,bool complete)
     {
-        if (correct)
+        if (correct && !complete)
         {
             yield return new WaitForSeconds(1);
             SceneManager.LoadScene("Subtraction");
+        }
+        else if(complete)
+        {
+            yield return new WaitForSeconds(1);
+            validateText.text = "Stage Completed!";
+            yield return new WaitForSeconds(2);
+            SceneManager.LoadScene("Topic_Chara_Selection");
+
         }
         else
         {
@@ -48,6 +57,7 @@ public class Portal : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         bool correct = false;
+        bool complete = false;
         if (collision.gameObject.CompareTag(PLAYER_TAG))
         {
 
@@ -70,9 +80,15 @@ public class Portal : MonoBehaviour
                 {
                     QuestionScript.advancedQuestions = true;
                 }
+                if (streakHiddenValue >= 5)
+                {
+                    complete = true;
+                    streakHiddenValue = -1;
+
+                }
                 streakHiddenValue++;
                 streakText.text = "" + (streakShownValue);
-                // SceneManager.LoadScene("GamePlay");
+                
             }
             else
             {
@@ -86,7 +102,7 @@ public class Portal : MonoBehaviour
 
             }
             validateText.GetComponent<Text>().enabled = true;
-            StartCoroutine(waitForSec(correct));
+            StartCoroutine(waitForSec(correct,complete));
 
 
             //validateText.GetComponent<Text>().enabled = false;

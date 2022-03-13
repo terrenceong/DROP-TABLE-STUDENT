@@ -54,16 +54,16 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Assets\Script\Substraction\ObjScript.cs" />
+    <Compile Include="Assets\Script\UI\Registration_Script.cs" />
     <Compile Include="Assets\Script\Substraction\TrashcanScript.cs" />
     <Compile Include="Assets\Script\Substraction\Joystick.cs" />
     <Compile Include="Assets\Script\Substraction\Player.cs" />
+    <Compile Include="Assets\Script\UI\Topics_Script.cs" />
     <Compile Include="Assets\Script\Substraction\GameMgr.cs" />
+    <Compile Include="Assets\Script\UI\Login_Register_Script.cs" />
     <Compile Include="Assets\Script\Substraction\Portal.cs" />
     <Compile Include="Assets\Script\Substraction\ObjSpawner.cs" />
     <Compile Include="Assets\Script\Substraction\QuestionScript.cs" />
-    <Compile Include="Assets\Script\UI\Registration_Script.cs" />
-    <Compile Include="Assets\Script\UI\Login_Register_Script.cs" />
-    <Compile Include="Assets\Script\UI\Topics_Script.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Knight Files\Read Me.txt" />

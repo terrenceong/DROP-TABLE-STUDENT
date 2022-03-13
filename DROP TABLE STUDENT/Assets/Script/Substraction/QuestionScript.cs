@@ -28,8 +28,8 @@ public class QuestionScript : MonoBehaviour
         }
         else{
             do{
-                number1 = Random.Range(0, 9);
-                number2 = Random.Range(0, 9);
+                number1 = Random.Range(1, 9);
+                number2 = Random.Range(1, 9);
             }
             while(number1<=number2);
         }
