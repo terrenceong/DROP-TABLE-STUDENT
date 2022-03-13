@@ -50,7 +50,7 @@ namespace Topics{
 
         public void divBtn(){
             //div = true;
-            //SceneManager.LoadScene("Level1_2");
+            SceneManager.LoadScene("Division");
         }
 
         public void bossBtn(){
