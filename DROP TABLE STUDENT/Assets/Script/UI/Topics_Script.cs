@@ -35,7 +35,7 @@ namespace Topics{
 
         public void addBtn(){
             //add = true;
-            //SceneManager.LoadScene("Level1_2");
+            SceneManager.LoadScene("Addition");
         }
 
         public void subBtn(){
