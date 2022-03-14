@@ -13,7 +13,7 @@ namespace Topics{
 
         public GameObject FinalBoss;
         public static int[] Boss_Prereq = new int[8];
-        public static int selectedChar = 0; // 0 or 1 base on character selection
+        public static int selectedChar = 1; // 0 or 1 base on character selection
         // Start is called before the first frame update
         void Start()
         {

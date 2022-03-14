@@ -41,7 +41,11 @@ public class GameMgr : MonoBehaviour
         if (scene.name == "Subtraction")
         {
            if(GameObject.FindWithTag("Player") == null)
+            {
+                characters[_charIndex].transform.position = new Vector3(0, 0, 0);
                 Instantiate(characters[_charIndex]);
+            }
+                
         }
 
     }
