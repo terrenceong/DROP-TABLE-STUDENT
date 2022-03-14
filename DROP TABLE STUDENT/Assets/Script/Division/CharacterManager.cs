@@ -12,7 +12,7 @@ public class CharacterManager : MonoBehaviour
         get { return _charIndex; }
         set { _charIndex = value; }
     }
-    private GameObject character;
+    public GameObject character;
     void Start()
     {
         character = Instantiate(characters[_charIndex], this.transform);
