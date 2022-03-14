@@ -13,11 +13,14 @@ namespace Topics{
 
         public GameObject FinalBoss;
         public static int[] Boss_Prereq = new int[8];
-
+        public static int selectedChar = 0; // 0 or 1 base on character selection
         // Start is called before the first frame update
         void Start()
         {
-            GameMgr.INDEX = 1;
+            GameMgr.CharIndex = selectedChar; // 0 OR 1 base on selected character Subtraction Mgr
+            AddtionGameMgr.CharIndex = selectedChar; // Addtion Mgr
+            CharacterManager.CharIndex = selectedChar; // Division Mgr
+
             FinalBoss = GameObject.Find("Final Boss");
             for (int i = 0; i < 7; i++){
                 if (Boss_Prereq[i] == 0){

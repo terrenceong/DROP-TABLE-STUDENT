@@ -3,3 +3,15 @@ sceneSetups:
   isLoaded: 1
   isActive: 1
   isSubScene: 0
+- path: Assets/Scenes/Addition/Addition.unity
+  isLoaded: 0
+  isActive: 0
+  isSubScene: 0
+- path: Assets/Scenes/Division/Division.unity
+  isLoaded: 0
+  isActive: 0
+  isSubScene: 0
+- path: Assets/Scenes/Subtraction/Subtraction.unity
+  isLoaded: 0
+  isActive: 0
+  isSubScene: 0

@@ -5,13 +5,17 @@ using UnityEngine;
 public class CharacterManager : MonoBehaviour
 {
     public GameObject[] characters;
-    public int charIndex;
     // Start is called before the first frame update
-
+    private static int _charIndex;
+    public static int CharIndex
+    {
+        get { return _charIndex; }
+        set { _charIndex = value; }
+    }
     public GameObject character;
     void Start()
     {
-        character = Instantiate(characters[charIndex], this.transform);
+        character = Instantiate(characters[_charIndex], this.transform);
 
         // add event actions
         EventManager.instance.onCorrect.AddListener(correct);

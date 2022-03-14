@@ -8,9 +8,8 @@ public class GameMgr : MonoBehaviour
     public static GameMgr instance;
     [SerializeField]
     private GameObject[] characters;
-    private int _charIndex;
-    public static int INDEX = 1;
-    public int CharIndex
+    private static int _charIndex;
+    public static int CharIndex
     {
         get { return _charIndex; }
         set { _charIndex = value; }
@@ -42,7 +41,7 @@ public class GameMgr : MonoBehaviour
         if (scene.name == "Subtraction")
         {
            if(GameObject.FindWithTag("Player") == null)
-                Instantiate(characters[INDEX]);
+                Instantiate(characters[_charIndex]);
         }
 
     }
