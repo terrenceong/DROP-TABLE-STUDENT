@@ -23,4 +23,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Division/Division.unity
     guid: 3d4d42a3c411aa0449c6659b5721a2bb
+  - enabled: 1
+    path: Assets/Scenes/Quiz/QuizScene.unity
+    guid: 840b9a86eee51d1428abefbd7a934e28
   m_configObjects: {}

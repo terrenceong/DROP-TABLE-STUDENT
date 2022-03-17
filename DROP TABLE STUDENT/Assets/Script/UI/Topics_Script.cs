@@ -33,7 +33,9 @@ namespace Topics{
         // Update is called once per frame
         void Update()
         {
-           
+            GameMgr.CharIndex = selectedChar; // 0 OR 1 base on selected character Subtraction Mgr
+            AddtionGameMgr.CharIndex = selectedChar; // Addtion Mgr
+            CharacterManager.CharIndex = selectedChar; // Division Mgr
         }
 
         public void addBtn(){
@@ -61,5 +63,14 @@ namespace Topics{
             SceneManager.LoadScene("Login_Screen");
         }
 
+        public void img0(){
+            selectedChar = 0;
+            print("Character 0 selected");
+        }
+
+        public void img1(){
+            selectedChar = 1;
+            print("Character 1 selected");
+        }
     }
 }
