@@ -9,6 +9,7 @@ TagManager:
   - Result
   - JoystickBG
   - Joystick
+  - Objective2
   layers:
   - Default
   - TransparentFX
@@ -43,6 +44,9 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Floor
+    uniqueID: 1918788305
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0
