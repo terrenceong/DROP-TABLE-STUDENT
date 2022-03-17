@@ -21,13 +21,13 @@ namespace Topics{
             AddtionGameMgr.CharIndex = selectedChar; // Addtion Mgr
             CharacterManager.CharIndex = selectedChar; // Division Mgr
 
-            FinalBoss = GameObject.Find("Final Boss");
+            /*FinalBoss = GameObject.Find("Final Boss");
             for (int i = 0; i < 7; i++){
                 if (Boss_Prereq[i] == 0){
                     FinalBoss.SetActive(false);
                     break;
                 }
-            }
+            }*/
         }
 
         // Update is called once per frame
@@ -37,17 +37,14 @@ namespace Topics{
         }
 
         public void addBtn(){
-            //add = true;
             SceneManager.LoadScene("Addition");
         }
 
         public void subBtn(){
-            //sub = true;
             SceneManager.LoadScene("Subtraction");
         }
 
         public void mulBtn(){
-            //mul = true;
             //SceneManager.LoadScene("Level1_2");
         }
 
@@ -57,7 +54,7 @@ namespace Topics{
         }
 
         public void bossBtn(){
-            print("Why do I hear boss music?");
+            SceneManager.LoadScene("QuizScene");
         }
 
         public void logOutBtn(){
