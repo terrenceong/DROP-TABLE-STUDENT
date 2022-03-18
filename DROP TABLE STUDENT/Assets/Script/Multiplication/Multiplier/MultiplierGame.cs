@@ -9,6 +9,7 @@ public class MultiplierGame : MonoBehaviour
     private GameObject timerText;
     private static int time = 0;
     public static bool running = true;
+    public static int difficulty = 0;
 
     private void Start()
     {
@@ -51,6 +52,6 @@ public class MultiplierGame : MonoBehaviour
     public void ReturnMainMenu()
     {
         print("hi");
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene("Topic_Chara_Selection");
     }
 }

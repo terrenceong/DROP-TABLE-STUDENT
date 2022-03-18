@@ -34,15 +34,15 @@ public class GridManager : MonoBehaviour
     /// </summary>
     private void InitBoard()
     {
-        _minValue = (int)Mathf.Pow(2, PlayMenu.difficulty);
-        size = PlayMenu.difficulty + 4;
+        _minValue = (int)Mathf.Pow(2, MultiplierGame.difficulty);
+        size = MultiplierGame.difficulty + 4;
         _board = new int[size, size];
 
-        if (PlayMenu.difficulty == 0)
+        if (MultiplierGame.difficulty == 0)
             _gridEasy.SetActive(true);
-        if (PlayMenu.difficulty == 1)
+        if (MultiplierGame.difficulty == 1)
             _gridMedium.SetActive(true);
-        if (PlayMenu.difficulty == 2)
+        if (MultiplierGame.difficulty == 2)
             _gridHard.SetActive(true);
 
         SetBoardValues();

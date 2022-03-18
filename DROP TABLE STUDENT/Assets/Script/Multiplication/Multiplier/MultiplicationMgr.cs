@@ -42,7 +42,7 @@ public class MultiplicationMgr : MonoBehaviour
         {
             if (GameObject.FindWithTag("Player") == null)
             {
-                GameObject sprite = Instantiate(characters[_charIndex], new Vector3(-13, -3, 1), new Quaternion());
+                GameObject sprite = Instantiate(characters[_charIndex], new Vector3(-14, -3, 1), new Quaternion());
                 Transform spriteTransform = sprite.GetComponent<Transform>();
                 spriteTransform.localScale = new Vector3(-5, 5, 1);
             }
