@@ -13,6 +13,8 @@ public class MultiplierGame : MonoBehaviour
 
     private void Start()
     {
+        time = 0;
+        GridManager.answered = 0;
         InvokeRepeating("UpdateTimer", 1f, 1f);
     }
 
@@ -51,7 +53,7 @@ public class MultiplierGame : MonoBehaviour
     /// </summary>
     public void ReturnMainMenu()
     {
-        print("hi");
-        SceneManager.LoadScene("Topic_Chara_Selection");
+        Destroy(this.gameObject);
+        SceneManager.LoadScene("Topic_Chara_Selection", LoadSceneMode.Single);
     }
 }

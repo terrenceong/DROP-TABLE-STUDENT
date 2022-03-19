@@ -6,7 +6,8 @@ using System;
 using System.Text.RegularExpressions;
 using UnityEngine.SceneManagement;
 
-namespace Topics{
+namespace Topics
+{
     public class Topics_Script : MonoBehaviour
     {
         public static bool add, sub, mul, div;
@@ -14,8 +15,8 @@ namespace Topics{
         public Transform FinalBoss;
         public static int[] Boss_Prereq = new int[8];
         public static int selectedChar = 0; // 0 or 1 base on character selection
-        // Start is called before the first frame update
-        
+                                            // Start is called before the first frame update
+
         void Start()
         {
             border1.GetComponent<Image>().enabled = false;
@@ -41,7 +42,7 @@ namespace Topics{
             AddtionGameMgr.CharIndex = selectedChar; // Addtion Mgr
             CharacterManager.CharIndex = selectedChar; // Division Mgr
             MultiplicationMgr.CharIndex = selectedChar;
-            if(selectedChar==0)
+            if (selectedChar == 0)
             {
                 border2.GetComponent<Image>().enabled = false;
                 border1.GetComponent<Image>().enabled = true;
@@ -54,45 +55,53 @@ namespace Topics{
 
         }
 
-        public void addBtn(){
+        public void addBtn()
+        {
             SceneManager.LoadScene("Addition");
         }
 
-        public void subBtn(){
+        public void subBtn()
+        {
             SceneManager.LoadScene("Subtraction");
         }
 
-        public void mulBtn(){
+        public void mulBtn()
+        {
             SceneManager.LoadScene("Multiplication");
         }
 
-        public void divBtn(){
+        public void divBtn()
+        {
             //div = true;
             SceneManager.LoadScene("Division");
         }
 
-        public void bossBtn(){
+        public void bossBtn()
+        {
             SceneManager.LoadScene("QuizScene");
         }
 
-        public void logOutBtn(){
+        public void logOutBtn()
+        {
             SceneManager.LoadScene("Login_Screen");
         }
 
-        public void img0(){
+        public void img0()
+        {
             selectedChar = 0;
             print("Character 0 selected");
             border2.GetComponent<Image>().enabled = false;
             border1.GetComponent<Image>().enabled = true;
-            
+
         }
 
-        public void img1(){
+        public void img1()
+        {
             selectedChar = 1;
             print("Character 1 selected");
             border1.GetComponent<Image>().enabled = false;
             border2.GetComponent<Image>().enabled = true;
-           
+
         }
     }
 }
