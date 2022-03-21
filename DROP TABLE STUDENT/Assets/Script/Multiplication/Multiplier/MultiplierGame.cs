@@ -6,10 +6,12 @@ using TMPro;
 public class MultiplierGame : MonoBehaviour
 {
     [SerializeField]
-    private GameObject timerText;
+    private GameObject _timerText;
+    [SerializeField]
+    private GameObject _gameOverText;
     private static int time = 0;
     public static bool running = true;
-    public static int difficulty = 0;
+    public static int difficulty = 2;
 
     private void Start()
     {
@@ -26,7 +28,7 @@ public class MultiplierGame : MonoBehaviour
     {
         if (running)
         {
-            TMP_Text tmpTxt = timerText.GetComponent<TMP_Text>();
+            TMP_Text tmpTxt = _timerText.GetComponent<TMP_Text>();
 
             time += 1;
             int min = time / 60,
@@ -41,9 +43,9 @@ public class MultiplierGame : MonoBehaviour
     /// <summary>
     /// Stops timer and ends game
     /// </summary>
-    public static void EndGame()
+    public void EndGame()
     {
-        print(time);
+        _gameOverText.SetActive(true);
         running = false;
     }
 

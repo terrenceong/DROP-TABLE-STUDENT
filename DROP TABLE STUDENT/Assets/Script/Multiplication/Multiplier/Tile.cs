@@ -172,7 +172,9 @@ public class Tile : MonoBehaviour
 
         if (GridManager.answered == 3)
         {
-            MultiplierGame.EndGame();
+            GameObject canvas = GameObject.Find("Canvas");
+            MultiplierGame game = canvas.GetComponent<MultiplierGame>();
+            game.EndGame();
         }
     }
 

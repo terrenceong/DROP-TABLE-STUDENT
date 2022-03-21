@@ -13,7 +13,8 @@ public class GridManager : MonoBehaviour
 
     private List<string> _targets = new List<string>();
     private int[,] _board;
-    private int _minValue;
+    private int[] _minVals = {1, 2, 3}, _maxVals = {6, 8, 9};
+    private int _minVal = 1, _maxVal = 9;
 
     public static int answered = 0;
     public static int size;
@@ -34,7 +35,9 @@ public class GridManager : MonoBehaviour
     /// </summary>
     private void InitBoard()
     {
-        _minValue = (int)Mathf.Pow(2, MultiplierGame.difficulty);
+        _minVal = _minVals[MultiplierGame.difficulty];
+        _maxVal = _maxVals[MultiplierGame.difficulty] + 1;
+
         size = MultiplierGame.difficulty + 4;
         _board = new int[size, size];
 
@@ -60,7 +63,7 @@ public class GridManager : MonoBehaviour
             {
                 GameObject cell = GameObject.Find($"Cell{y}{x}");
                 SpriteRenderer spriteRenderer = cell.GetComponent<SpriteRenderer>();
-                _board[y, x] = Random.Range(_minValue, 9);
+                _board[y, x] = Random.Range(_minVal, _maxVal);
                 spriteRenderer.sprite = _numData.numberData[_board[y, x] - 1].image;
 
                 Tile tile = cell.GetComponent<Tile>();
