@@ -560,9 +560,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 678958da61f505a4cb68e8536f568a62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  username: {fileID: 1405144372}
-  password: {fileID: 1731694034}
-  cfm_password: {fileID: 151356277}
+  usernameTxt: {fileID: 1405144372}
+  passwordTxt: {fileID: 1731694034}
+  cfmPasswordTxt: {fileID: 151356277}
 --- !u!1 &439864162
 GameObject:
   m_ObjectHideFlags: 0
