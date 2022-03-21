@@ -192,7 +192,7 @@ GameObject:
   - component: {fileID: 385184860}
   - component: {fileID: 385184859}
   m_Layer: 5
-  m_Name: border0
+  m_Name: border1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -347,7 +347,7 @@ GameObject:
   - component: {fileID: 669794131}
   - component: {fileID: 669794130}
   m_Layer: 5
-  m_Name: border1
+  m_Name: border2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -806,8 +806,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6366c64174e634549a85e9910a7700b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  border1: {fileID: 385184857}
-  border2: {fileID: 669794128}
+  border1: {fileID: 385184858}
+  border2: {fileID: 669794129}
   FinalBoss: {fileID: 762714173}
 --- !u!1 &1061852799
 GameObject:
