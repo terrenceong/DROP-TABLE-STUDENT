@@ -6,9 +6,11 @@ using UnityEngine.Networking;
 using System;
 using System.Text.RegularExpressions;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class Registration_Script : MonoBehaviour
 {
+    public GameObject registerStatusLbl;
     public GameObject usernameTxt, passwordTxt, cfmPasswordTxt;
     private string username, password, cfmPassword;
     private string host = "172.21.148.170/register";
@@ -29,9 +31,6 @@ public class Registration_Script : MonoBehaviour
 
     public void RegisterButton()
     {
-        print(username);
-        print(password);
-        print(cfmPassword);
         if (password == cfmPassword)
             StartCoroutine(Register());
     }
@@ -42,10 +41,32 @@ public class Registration_Script : MonoBehaviour
         form.AddField("username", username);
         form.AddField("password", password);
 
-        using (UnityWebRequest www = UnityWebRequest.Post(host, form))
+        UnityWebRequest www = UnityWebRequest.Post(host, form);
+        www.timeout = 3;
+
+        yield return www.SendWebRequest();
+
+        TMP_Text registerStatus = registerStatusLbl.GetComponent<TMP_Text>();
+
+        // conflict error
+        if (www.responseCode == 409)
         {
-            yield return www.SendWebRequest();
-            Debug.Log(www.downloadHandler.text);
+            registerStatus.color = Color.red;
+            registerStatus.text = www.downloadHandler.text;
+        }
+
+        // unreachable
+        else if (www.result != UnityWebRequest.Result.Success)
+        {
+            registerStatus.color = Color.red;
+            registerStatus.text = "Couldn't reach server";
+        }
+
+        // registered
+        else
+        {
+            registerStatus.color = Color.green;
+            registerStatus.text = "Successfully registered!";
         }
     }
 
