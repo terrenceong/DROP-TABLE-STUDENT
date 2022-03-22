@@ -36,7 +36,7 @@ MonoBehaviour:
     - 5
     - 6
     correctAns: 6
-  - questionInfo: 8 ÷ 4 ?
+  - questionInfo: "4 \xF7 2 ?"
     questionType: 0
     questionImage: {fileID: 0}
     audioClip: {fileID: 0}
@@ -80,7 +80,7 @@ MonoBehaviour:
     - 3
     - 4
     correctAns: 4
-  - questionInfo: 9 ÷ 3 ?
+  - questionInfo: "9 \xF7 3 ?"
     questionType: 0
     questionImage: {fileID: 0}
     audioClip: {fileID: 0}
@@ -113,7 +113,7 @@ MonoBehaviour:
     - 2
     - 3
     correctAns: 3
-  - questionInfo: 6 ÷ 2 ?
+  - questionInfo: "6 \xF7 2 ?"
     questionType: 0
     questionImage: {fileID: 0}
     audioClip: {fileID: 0}
