@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class DragScript : MonoBehaviour
 {
@@ -33,6 +34,12 @@ public class DragScript : MonoBehaviour
         
     }
 
+    // Update is called once per frame
+    IEnumerator waitForSec(int waitTime)
+    {
+        yield return new WaitForSeconds(waitTime);
+        SceneManager.LoadScene("Topic_Chara_Selection");
+    }
     void OnCollisionEnter2D(Collision2D collision)
     {
         if(collision.gameObject.tag == "Answer")
@@ -127,7 +134,7 @@ public class DragScript : MonoBehaviour
                 GameEnd.GetComponent<Text>().fontSize = 250;
                 GameEnd.GetComponent<Text>().color = Color.green;
                 GameEnd.GetComponent<Text>().enabled = true;
-
+                StartCoroutine(waitForSec(2));
             }
             else
             {
