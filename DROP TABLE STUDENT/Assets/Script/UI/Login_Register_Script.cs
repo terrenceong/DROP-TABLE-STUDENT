@@ -37,18 +37,19 @@ public class Login_Register_Script : MonoBehaviour
         form.AddField("username", username);
         form.AddField("password", password);
 
-        using (UnityWebRequest www = UnityWebRequest.Post(host, form))
-        {
-            yield return www.SendWebRequest();
-            if (www.responseCode == 200)
-                SceneManager.LoadScene("Topic_Chara_Selection");
-            else if (www.responseCode == 401)
-            {
-                Debug.Log(www.downloadHandler.text);
-                TMP_Text loginStatus = loginStatusLbl.GetComponent<TMP_Text>();
-                loginStatus.text = www.downloadHandler.text;
-            }
-        }
+        UnityWebRequest www = UnityWebRequest.Post(host, form);
+        www.timeout = 3;
+
+        yield return www.SendWebRequest();
+
+        TMP_Text loginStatus = loginStatusLbl.GetComponent<TMP_Text>();
+
+        if (www.result != UnityWebRequest.Result.Success)
+            loginStatus.text = "Couldn't reach server";
+        else if (www.responseCode == 401)
+            loginStatus.text = www.downloadHandler.text;
+        else
+            SceneManager.LoadScene("Topic_Chara_Selection");
     }
 
     public void LoginButton()

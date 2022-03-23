@@ -9,14 +9,18 @@ public class MultiplierGame : MonoBehaviour
     private GameObject _timerText;
     [SerializeField]
     private GameObject _gameOverText;
-    private static int time = 0;
-    public static bool running = true;
-    public static int difficulty = 2;
+    private static int time;
+    public static bool running;
+    public static int difficulty = 1;
 
     private void Start()
     {
+        // resets game state on start
         time = 0;
         GridManager.answered = 0;
+        running = true;
+
+        // increments timer every second
         InvokeRepeating("UpdateTimer", 1f, 1f);
     }
 
