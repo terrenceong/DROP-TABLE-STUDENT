@@ -15,6 +15,7 @@ public class Portal : MonoBehaviour
     private Text streakText;
     private static int streakHiddenValue = 0;
     private static int streakShownValue = 0;
+    GameObject TutorialPopup;
 
 
     // Start is called before the first frame update
@@ -26,8 +27,10 @@ public class Portal : MonoBehaviour
     }
     void Start()
     {
-
-
+        TutorialPopup=GameObject.Find("Tutorial Popup");
+        if(streakHiddenValue!=0){
+            TutorialPopup.SetActive(false);
+        }
     }
 
     // Update is called once per frame
@@ -110,5 +113,15 @@ public class Portal : MonoBehaviour
 
             //SceneManager.LoadScene("NextScene");
         }
+    }
+    public void ReturnMainMenu()
+    {
+        //Destroy(this.gameObject);
+        Debug.Log("clicked");
+        SceneManager.LoadScene("Topic_Chara_Selection", LoadSceneMode.Single);
+    }
+    public void HidePopup()
+    {
+        TutorialPopup.SetActive(false);
     }
 }
