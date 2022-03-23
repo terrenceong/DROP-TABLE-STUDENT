@@ -81,6 +81,11 @@ namespace Topics
             SceneManager.LoadScene("QuizScene");
         }
 
+        public void LeaderboardsBtn()
+        {
+            SceneManager.LoadScene("Leaderboards");
+        }
+
         public void logOutBtn()
         {
             SceneManager.LoadScene("Login_Screen");

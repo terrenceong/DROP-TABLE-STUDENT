@@ -13,7 +13,7 @@ public class Login_Register_Script : MonoBehaviour
     public GameObject loginStatusLbl;
     public GameObject usernameTxt;
     public GameObject passwordTxt;
-    private string username;
+    public static string username = "give me a name";
     private string password;
     private string form;
     private string host = "172.21.148.170/login";

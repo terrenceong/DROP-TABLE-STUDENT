@@ -9,6 +9,7 @@ public class MultiplierGame : MonoBehaviour
     private GameObject _timerText;
     [SerializeField]
     private GameObject _gameOverText;
+    private int defaultScore = 1000;
     private static int time;
     public static bool running;
     public static int difficulty = 1;
@@ -49,8 +50,16 @@ public class MultiplierGame : MonoBehaviour
     /// </summary>
     public void EndGame()
     {
+        int score = CalculateScore();
+        Leaderboards.UploadScore(2, score);
+
         _gameOverText.SetActive(true);
         running = false;
+    }
+
+    private int CalculateScore()
+    {
+        return (difficulty + 1) * (int)Mathf.Max(0f, defaultScore - time);
     }
 
 
