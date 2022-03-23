@@ -19,7 +19,6 @@ public class DragScript : MonoBehaviour
     //Status of ball
     String placed = "Ground";
 
-    [SerializeField] private Text GameEnd;
 
     // Start is called before the first frame update
     void Start()
@@ -30,16 +29,10 @@ public class DragScript : MonoBehaviour
         mat.bounciness = 0.5f;
         mat.friction = 0.04f;
         GetComponent<CircleCollider2D>(). sharedMaterial = mat;
-        GameEnd.GetComponent<Text>().enabled = false;
-        
     }
 
     // Update is called once per frame
-    IEnumerator waitForSec(int waitTime)
-    {
-        yield return new WaitForSeconds(waitTime);
-        SceneManager.LoadScene("Topic_Chara_Selection");
-    }
+    
     void OnCollisionEnter2D(Collision2D collision)
     {
         if(collision.gameObject.tag == "Answer")
@@ -126,24 +119,13 @@ public class DragScript : MonoBehaviour
         if(AnswerStatus.allAnswered())
         {
             Debug.Log(AnswerStatus.getAns1() + "+" + AnswerStatus.getAns2() + "=" + AnswerStatus.getAns3());
-            if(AnswerStatus.getAns1() + + + AnswerStatus.getAns2() == AnswerStatus.getAns3())
+            if(AnswerStatus.getAns1() + AnswerStatus.getAns2() == AnswerStatus.getAns3())
             {
-                //Debug.Log("WELL DONE!");
-                //FindObjectOfType<GameManager>().DisplayOnScreen("Well Done!");
-                GameEnd.GetComponent<Text>().text = "WELL DONE!";
-                GameEnd.GetComponent<Text>().fontSize = 250;
-                GameEnd.GetComponent<Text>().color = Color.green;
-                GameEnd.GetComponent<Text>().enabled = true;
-                StartCoroutine(waitForSec(2));
+                AnswerStatus.correct = 1;
             }
             else
             {
-                //Debug.Log("FAIL!");
-                //FindObjectOfType<GameManager>().DisplayOnScreen("FAIL!");
-                GameEnd.GetComponent<Text>().text = "Try Again!";
-                GameEnd.GetComponent<Text>().fontSize = 250;
-                GameEnd.GetComponent<Text>().color = Color.red;
-                GameEnd.GetComponent<Text>().enabled = true;
+                AnswerStatus.correct = 0;         
             }
         }
     }

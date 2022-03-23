@@ -7,6 +7,7 @@ public class AnswerStatus
     private static int ans1 = 0;
     private static int ans2 = 0;
     private static int ans3 = 0;
+    public static int correct = -1;
 
     public static bool allAnswered()
     {
