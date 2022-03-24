@@ -16,19 +16,50 @@ public class Portal : MonoBehaviour
     private static int streakHiddenValue = 0;
     private static int streakShownValue = 0;
     GameObject TutorialPopup;
+    public static float cdTimer = 60.0f;
+    public Text timeStamp;
+    private static bool start = false;
+    private static bool tutorialRead = false;
+    private static bool complete = false;
 
 
-    // Start is called before the first frame update
+    private void Update()
+    {
+        if(cdTimer > 0 && start)
+        {
+            cdTimer -= Time.deltaTime;
+        }
+        double b = System.Math.Round(cdTimer, 0);
+        timeStamp.text = b + "s";
+        if(cdTimer <=0 && !complete)
+        {
+            complete = true;
+        }
+        if(complete && cdTimer<=0)
+        {
+           /*if(streakShownValue > 0)
+            {
+                Debug.Log(streakShownValue);
+                Leaderboards.UploadScore(1, streakShownValue);
+            }*/
+               
+           // validateText.text = "Times up!";
+            //validateText.GetComponent<Text>().enabled = true;
+            StartCoroutine(waitForSec(false, complete));
+         
+        }
+
+    }
     private void Awake()
     {
-       
+     
         validateText.GetComponent<Text>().enabled = false;
         streakText.text = "" + (streakShownValue);
     }
     void Start()
     {
         TutorialPopup=GameObject.Find("Tutorial Popup");
-        if(streakHiddenValue!=0){
+        if(tutorialRead){
             TutorialPopup.SetActive(false);
         }
     }
@@ -39,20 +70,21 @@ public class Portal : MonoBehaviour
         if (correct && !complete)
         {
             yield return new WaitForSeconds(1);
+            cdTimer += 3;
             SceneManager.LoadScene("Subtraction");
         }
-        else if(complete)
-        {
-            yield return new WaitForSeconds(1);
-            validateText.text = "Stage Completed!";
-            yield return new WaitForSeconds(2);
-            SceneManager.LoadScene("Topic_Chara_Selection");
-
-        }
-        else
+        else if(!complete)
         {
             yield return new WaitForSeconds(1);
             validateText.GetComponent<Text>().enabled = false;
+        }
+        else
+        {
+
+            //yield return new WaitForSeconds(2);
+            ReturnMainMenu();
+
+
         }
 
 
@@ -60,7 +92,6 @@ public class Portal : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         bool correct = false;
-        bool complete = false;
         if (collision.gameObject.CompareTag(PLAYER_TAG))
         {
 
@@ -72,7 +103,7 @@ public class Portal : MonoBehaviour
                 correct = true;
                 if (QuestionScript.advancedQuestions == true)
                 {
-                    streakShownValue += 2;
+                    streakShownValue += 3;
                 }
                 else
                 {
@@ -83,21 +114,16 @@ public class Portal : MonoBehaviour
                 {
                     QuestionScript.advancedQuestions = true;
                 }
-                if (streakHiddenValue >= 5)
-                {
-                    complete = true;
-                    streakHiddenValue = -1;
-
-                }
                 streakHiddenValue++;
                 streakText.text = "" + (streakShownValue);
                 
             }
             else
             {
+               
                 validateText.text = "Incorrect ! Try Again";
                 collectedText.text = "0";
-                if (streakShownValue > 0)
+                if(streakShownValue > 0)
                 {
                     streakShownValue--;
                 }
@@ -117,11 +143,18 @@ public class Portal : MonoBehaviour
     public void ReturnMainMenu()
     {
         //Destroy(this.gameObject);
-        Debug.Log("clicked");
+        Debug.Log("return main");
+        streakShownValue = 0;
+        streakHiddenValue = 0;
+        cdTimer = 60.0f;
+        complete = false;
+        QuestionScript.advancedQuestions = false;
         SceneManager.LoadScene("Topic_Chara_Selection", LoadSceneMode.Single);
     }
     public void HidePopup()
     {
         TutorialPopup.SetActive(false);
+        tutorialRead = true;
+        start = true;
     }
 }
