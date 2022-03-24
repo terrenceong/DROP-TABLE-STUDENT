@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.Networking;
 using TMPro;
 
@@ -115,5 +116,12 @@ public class Leaderboards : MonoBehaviour
             GameObject scoreObject = GameObject.Find("Score" + i);
             scoreObject.GetComponent<Text>().text = scores[i];
         }
+    }
+
+
+    public void ReturnMainMenu()
+    {
+        Destroy(this.gameObject);
+        SceneManager.LoadScene("Topic_Chara_Selection", LoadSceneMode.Single);
     }
 }
