@@ -37,7 +37,7 @@ public class DragScript : MonoBehaviour
     {
         if(collision.gameObject.tag == "Answer")
         {   
-            Debug.Log(collision.otherRigidbody.name + " has been placed on " + collision.gameObject.name);
+            //Debug.Log(collision.otherRigidbody.name + " has been placed on " + collision.gameObject.name);
             //Debug.Log(Int32.Parse(collision.otherRigidbody.name)); //convert String to int
             if(collision.gameObject.name == "Ans-1")
             {
@@ -45,16 +45,16 @@ public class DragScript : MonoBehaviour
                     if(placed == "Ans-2")
                     {
                         AnswerStatus.setAns2(0);
-                        Debug.Log("Ans-2 has been set to 0");
+                        //Debug.Log("Ans-2 has been set to 0");
                     }
                     else if(placed == "Ans-3")
                     {
                         AnswerStatus.setAns3(0);
-                        Debug.Log("Ans-3 has been set to 0");
+                        //Debug.Log("Ans-3 has been set to 0");
                     }
                 }
                 AnswerStatus.setAns1(Int32.Parse(collision.otherRigidbody.name));
-                Debug.Log(AnswerStatus.getAns1().ToString() + " has been set in Ans-1");
+                //Debug.Log(AnswerStatus.getAns1().ToString() + " has been set in Ans-1");
                 placed = "Ans-1";
             }
             else if(collision.gameObject.name == "Ans-2")
@@ -63,16 +63,16 @@ public class DragScript : MonoBehaviour
                     if(placed == "Ans-1")
                     {
                         AnswerStatus.setAns1(0);
-                        Debug.Log("Ans-1 has been set to 0");
+                        //Debug.Log("Ans-1 has been set to 0");
                     }
                     else if(placed == "Ans-3")
                     {
                         AnswerStatus.setAns3(0);
-                        Debug.Log("Ans-3 has been set to 0");
+                        //Debug.Log("Ans-3 has been set to 0");
                     }
                 }
                 AnswerStatus.setAns2(Int32.Parse(collision.otherRigidbody.name));
-                Debug.Log(AnswerStatus.getAns2().ToString() + " has been set in Ans-2");
+                //Debug.Log(AnswerStatus.getAns2().ToString() + " has been set in Ans-2");
                 placed = "Ans-2";
             }
             else if(collision.gameObject.name == "Ans-3")
@@ -81,47 +81,50 @@ public class DragScript : MonoBehaviour
                     if(placed == "Ans-1")
                     {
                         AnswerStatus.setAns1(0);
-                        Debug.Log("Ans-1 has been set to 0");
+                        //Debug.Log("Ans-1 has been set to 0");
                     }
                     else if(placed == "Ans-2")
                     {
                         AnswerStatus.setAns2(0);
-                        Debug.Log("Ans-2 has been set to 0");
+                        //Debug.Log("Ans-2 has been set to 0");
                     }
                 }
                 AnswerStatus.setAns3(Int32.Parse(collision.otherRigidbody.name));
-                Debug.Log(AnswerStatus.getAns3().ToString() + " has been set in Ans-3");
+                //Debug.Log(AnswerStatus.getAns3().ToString() + " has been set in Ans-3");
                 placed = "Ans-3";
             }
         }
         else if (collision.gameObject.tag == "Wall")
         {
-            Debug.Log(collision.otherRigidbody.name + " has been placed on the ground");
+            //Debug.Log(collision.otherRigidbody.name + " has been placed on the ground");
             if(placed != "Ground")
             {
                 if(placed == "Ans-1")
                 {
                    AnswerStatus.setAns1(0);
-                   Debug.Log(AnswerStatus.getAns1().ToString() + " has been set in Ans-1");
+                   //Debug.Log(AnswerStatus.getAns1().ToString() + " has been set in Ans-1");
                 }
                 else if(placed == "Ans-2")
                 {
                     AnswerStatus.setAns2(0); 
-                    Debug.Log(AnswerStatus.getAns2().ToString() + " has been set in Ans-2");
+                    //Debug.Log(AnswerStatus.getAns2().ToString() + " has been set in Ans-2");
                 }
                 else //Ans-3
                 {
                     AnswerStatus.setAns3(0); 
-                    Debug.Log(AnswerStatus.getAns3().ToString() + " has been set in Ans-3");
+                    //Debug.Log(AnswerStatus.getAns3().ToString() + " has been set in Ans-3");
                 }
             }
         }
         if(AnswerStatus.allAnswered())
         {
-            Debug.Log(AnswerStatus.getAns1() + "+" + AnswerStatus.getAns2() + "=" + AnswerStatus.getAns3());
+           // Debug.Log(AnswerStatus.getAns1() + "+" + AnswerStatus.getAns2() + "=" + AnswerStatus.getAns3());
             if(AnswerStatus.getAns1() + AnswerStatus.getAns2() == AnswerStatus.getAns3())
             {
+                StopWatch sw = GameObject.FindObjectOfType(typeof(StopWatch)) as StopWatch;
+                sw.stopTime();
                 AnswerStatus.correct = 1;
+                AnswerStatus.level++;
             }
             else
             {

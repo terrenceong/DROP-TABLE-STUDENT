@@ -9,13 +9,24 @@ public class MsgController : MonoBehaviour
     [SerializeField] private Text GameEnd;
     void Start()
     {
+        AnswerStatus.setAns1(0);
+        AnswerStatus.setAns2(0);
+        AnswerStatus.setAns3(0);
+        AnswerStatus.correct = -1;
         GameEnd.GetComponent<Text>().enabled = false;   
     }
 
     IEnumerator waitForSec(int waitTime)
     {
         yield return new WaitForSeconds(waitTime);
-        SceneManager.LoadScene("Topic_Chara_Selection");
+        if(AnswerStatus.level == 2)
+        {
+            SceneManager.LoadScene("Topic_Chara_Selection");
+        }   
+        else
+        {
+            SceneManager.LoadScene("Addition");
+        }
     }
 
     void Update()
