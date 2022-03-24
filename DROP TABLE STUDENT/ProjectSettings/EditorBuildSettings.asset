@@ -15,6 +15,9 @@ EditorBuildSettings:
     path: Assets/Scenes/UI/Topic_Chara_Selection.unity
     guid: a85f9b239624ef448a1dbe9b7fcd4131
   - enabled: 1
+    path: Assets/Scenes/UI/Leaderboards.unity
+    guid: 8d4c673baa59cac49b8645905c98daa2
+  - enabled: 1
     path: Assets/Scenes/Subtraction/Subtraction.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1

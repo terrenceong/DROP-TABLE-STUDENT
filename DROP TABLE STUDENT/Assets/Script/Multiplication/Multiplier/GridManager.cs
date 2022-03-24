@@ -13,7 +13,7 @@ public class GridManager : MonoBehaviour
 
     private List<string> _targets = new List<string>();
     private int[,] _board;
-    private int[] _minVals = {1, 2, 3}, _maxVals = {6, 8, 9};
+    private int[] _minVals = { 1, 2, 3 }, _maxVals = { 6, 8, 9 };
     private int _minVal = 1, _maxVal = 9;
 
     public static int answered = 0;
@@ -25,15 +25,15 @@ public class GridManager : MonoBehaviour
     void Start()
     {
         _numData = GetComponent<NumberData>();
-        InitBoard();
-        DrawTargets();
+        // InitBoard();
+        // DrawTargets();
     }
 
 
     /// <summary>
     /// Initialises game board with values
     /// </summary>
-    private void InitBoard()
+    public void InitBoard()
     {
         _minVal = _minVals[MultiplierGame.difficulty];
         _maxVal = _maxVals[MultiplierGame.difficulty] + 1;
@@ -77,7 +77,7 @@ public class GridManager : MonoBehaviour
     /// <summary>
     /// Sets numeric values for the target cells
     /// </summary>
-    private void DrawTargets()
+    public void DrawTargets()
     {
         // resets targets
         _targets.Clear();

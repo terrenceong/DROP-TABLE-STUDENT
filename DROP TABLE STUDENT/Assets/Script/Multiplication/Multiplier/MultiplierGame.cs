@@ -9,8 +9,13 @@ public class MultiplierGame : MonoBehaviour
     private GameObject _timerText;
     [SerializeField]
     private GameObject _gameOverText;
+    [SerializeField]
+    public GameObject tutorialPopup;
+
+    private GridManager _gridManager;
     private int defaultScore = 1000;
     private static int time;
+    private static bool multTutWatched = false;
     public static bool running;
     public static int difficulty = 1;
 
@@ -19,7 +24,13 @@ public class MultiplierGame : MonoBehaviour
         // resets game state on start
         time = 0;
         GridManager.answered = 0;
-        running = true;
+
+        _gridManager = GameObject.Find("GameContainer").GetComponent<GridManager>();
+
+        if (multTutWatched)
+            StartGame();
+        else
+            ShowTutorial();
 
         // increments timer every second
         InvokeRepeating("UpdateTimer", 1f, 1f);
@@ -45,6 +56,14 @@ public class MultiplierGame : MonoBehaviour
     }
 
 
+    public void StartGame()
+    {
+        running = true;
+        _gridManager.InitBoard();
+        _gridManager.DrawTargets();
+    }
+
+
     /// <summary>
     /// Stops timer and ends game
     /// </summary>
@@ -57,9 +76,24 @@ public class MultiplierGame : MonoBehaviour
         running = false;
     }
 
+
     private int CalculateScore()
     {
         return (difficulty + 1) * (int)Mathf.Max(0f, defaultScore - time);
+    }
+
+
+    public void ShowTutorial()
+    {
+        tutorialPopup.SetActive(true);
+        running = false;
+    }
+
+    public void HideTutorial()
+    {
+        tutorialPopup.SetActive(false);
+        multTutWatched = true;
+        StartGame();
     }
 
 

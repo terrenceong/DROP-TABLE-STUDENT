@@ -23,6 +23,11 @@ public class Leaderboards : MonoBehaviour
 
     }
 
+    /// <summary>
+    /// Upload scores by type. Addition=0, Subtraction=1, Multiplication=2, Division=3
+    /// </summary>
+    /// <param name="gameType"></param>
+    /// <param name="score"></param>
     public static void UploadScore(int gameType, int score)
     {
         WWWForm form = new WWWForm();
@@ -55,6 +60,11 @@ public class Leaderboards : MonoBehaviour
         StartCoroutine(RetrieveLeaderboards(3));
     }
 
+    /// <summary>
+    /// Retrieves top 5 users by game type and displays them in the leaderboards scene
+    /// </summary>
+    /// <param name="gameType"></param>
+    /// <returns></returns>
     public IEnumerator RetrieveLeaderboards(int gameType)
     {
         WWWForm form = new WWWForm();
@@ -75,6 +85,9 @@ public class Leaderboards : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Empties the leaderboards, called on any of the 4 button presses
+    /// </summary>
     private void ClearLeaderboards()
     {
         for (int i = 0; i < 5; i++)
@@ -84,6 +97,10 @@ public class Leaderboards : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Updates the 5 score objects with the users and their scores
+    /// </summary>
+    /// <param name="response"></param>
     private void UpdateLeaderboards(string response)
     {
         ClearLeaderboards();
