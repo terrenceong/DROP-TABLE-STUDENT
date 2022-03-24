@@ -124,7 +124,6 @@ public class DragScript : MonoBehaviour
                 StopWatch sw = GameObject.FindObjectOfType(typeof(StopWatch)) as StopWatch;
                 sw.stopTime();
                 AnswerStatus.correct = 1;
-                AnswerStatus.level++;
             }
             else
             {

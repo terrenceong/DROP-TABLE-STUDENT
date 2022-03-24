@@ -7,9 +7,16 @@ public class CircleScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
-        int firstNum = Random.Range(1,10);
-        int secondNum = Random.Range(1,20-firstNum);
+        int max;
+        if(AnswerStatus.level == 1)
+        {
+            max = 10;
+        }
+        else{
+            max = 20;
+        }
+        int firstNum = Random.Range(max-9,max-1);
+        int secondNum = Random.Range(1,max-firstNum);
         int ansNum = firstNum + secondNum;
         int[] balls = new int[]{firstNum, secondNum, ansNum};
         //Debug.Log(firstNum+" "+secondNum+" "+ansNum);
@@ -20,7 +27,7 @@ public class CircleScript : MonoBehaviour
                 GameObject.Find("CircleHandler").GetComponent<CircleHandler>().SpawnNewCircle(balls[i]-1);
             }
             else{
-                GameObject.Find("CircleHandler").GetComponent<CircleHandler>().SpawnNewCircle(Random.Range(0,20));
+                GameObject.Find("CircleHandler").GetComponent<CircleHandler>().SpawnNewCircle(Random.Range(max/2,max)-1);
             }
         }
     }

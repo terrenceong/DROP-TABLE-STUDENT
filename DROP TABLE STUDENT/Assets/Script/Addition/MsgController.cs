@@ -13,20 +13,27 @@ public class MsgController : MonoBehaviour
         AnswerStatus.setAns2(0);
         AnswerStatus.setAns3(0);
         AnswerStatus.correct = -1;
-        GameEnd.GetComponent<Text>().enabled = false;   
+        displayLevel(); 
     }
 
-    IEnumerator waitForSec(int waitTime)
+    IEnumerator changeSceneAdd(int waitTime)
     {
         yield return new WaitForSeconds(waitTime);
-        if(AnswerStatus.level == 2)
+        if(AnswerStatus.level >= 2)
         {
+            AnswerStatus.level = 1;
             SceneManager.LoadScene("Topic_Chara_Selection");
         }   
         else
         {
+            AnswerStatus.level+=1;
             SceneManager.LoadScene("Addition");
         }
+    }
+
+    IEnumerator wait(int waitTime)
+    {
+        yield return new WaitForSeconds(waitTime);
     }
 
     void Update()
@@ -37,7 +44,7 @@ public class MsgController : MonoBehaviour
             GameEnd.GetComponent<Text>().fontSize = 250;
             GameEnd.GetComponent<Text>().color = Color.green;
             GameEnd.GetComponent<Text>().enabled = true;
-            StartCoroutine(waitForSec(2));
+            StartCoroutine(changeSceneAdd(1));
         }
         else if(AnswerStatus.correct == 0)
         {
@@ -46,5 +53,13 @@ public class MsgController : MonoBehaviour
             GameEnd.GetComponent<Text>().color = Color.red;
             GameEnd.GetComponent<Text>().enabled = true;
         }
+    }
+
+    void displayLevel()
+    {
+        GameEnd.GetComponent<Text>().text = ("Level "+AnswerStatus.level);
+        GameEnd.GetComponent<Text>().fontSize = 250;
+        GameEnd.GetComponent<Text>().color = Color.white;
+        GameEnd.GetComponent<Text>().enabled = true;
     }
 }
