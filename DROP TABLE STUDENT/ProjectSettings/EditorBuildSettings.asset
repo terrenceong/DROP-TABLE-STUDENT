@@ -6,30 +6,30 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/UI/Login_Screen.unity
+    path: Assets/Scenes/Menus/Login_Screen.unity
     guid: a85b2e2241aa20446baf0f9cd3da3d89
   - enabled: 1
-    path: Assets/Scenes/UI/Registration_Screen.unity
+    path: Assets/Scenes/Menus/Registration_Screen.unity
     guid: 6146b43dc28ad274798544077f6f518f
   - enabled: 1
-    path: Assets/Scenes/UI/Topic_Chara_Selection.unity
+    path: Assets/Scenes/Menus/Topic_Chara_Selection.unity
     guid: a85f9b239624ef448a1dbe9b7fcd4131
   - enabled: 1
-    path: Assets/Scenes/UI/Leaderboards.unity
+    path: Assets/Scenes/Menus/Leaderboards.unity
     guid: 8d4c673baa59cac49b8645905c98daa2
   - enabled: 1
-    path: Assets/Scenes/Subtraction/Subtraction.unity
+    path: Assets/Scenes/Games/Subtraction.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
-    path: Assets/Scenes/Addition/Addition.unity
+    path: Assets/Scenes/Games/Addition.unity
     guid: 3e80d23cc0d51f24ead17e222ff9e20d
   - enabled: 1
-    path: Assets/Scenes/Division/Division.unity
+    path: Assets/Scenes/Games/Division.unity
     guid: 3d4d42a3c411aa0449c6659b5721a2bb
   - enabled: 1
-    path: Assets/Scenes/Multiplication/Multiplication.unity
+    path: Assets/Scenes/Games/Multiplication.unity
     guid: 62a1afae54986d049b85c003dc970cd4
   - enabled: 1
-    path: Assets/Scenes/Quiz/QuizScene.unity
+    path: Assets/Scenes/Games/QuizScene.unity
     guid: 840b9a86eee51d1428abefbd7a934e28
   m_configObjects: {}

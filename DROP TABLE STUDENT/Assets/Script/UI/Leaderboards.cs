@@ -6,6 +6,8 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Networking;
 using TMPro;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 public class Leaderboards : MonoBehaviour
 {
@@ -109,12 +111,16 @@ public class Leaderboards : MonoBehaviour
         if (response.Length == 0)
             return;
 
-        string[] scores = response.Split(new[] { "__separator__" }, StringSplitOptions.None);
+        JArray arr = JArray.Parse(response);
 
-        for (int i = 0; i < scores.Length; i++)
+        for (int i = 0; i < arr.Count; i++)
         {
+            JToken score = arr[i];
+            string username = (string)score["username"];
+            string score_val = (string)score["score_value"];
+
             GameObject scoreObject = GameObject.Find("Score" + i);
-            scoreObject.GetComponent<Text>().text = scores[i];
+            scoreObject.GetComponent<Text>().text = $"{username}: {score_val}";
         }
     }
 
