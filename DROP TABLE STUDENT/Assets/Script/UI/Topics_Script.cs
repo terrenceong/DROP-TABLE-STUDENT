@@ -67,6 +67,7 @@ namespace Topics
 
         public void mulBtn()
         {
+            MultiplierGame.difficulty = 0;
             SceneManager.LoadScene("Multiplication");
         }
 

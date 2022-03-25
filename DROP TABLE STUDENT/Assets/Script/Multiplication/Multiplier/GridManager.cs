@@ -21,6 +21,7 @@ public class GridManager : MonoBehaviour
     public static bool isSelecting = false;
     public static GameObject sourceCell = null;
     public static List<GameObject> pairCells = new List<GameObject>();
+    public static List<LineRenderer> ansLines = new List<LineRenderer>();
 
     void Start()
     {
@@ -40,6 +41,10 @@ public class GridManager : MonoBehaviour
 
         size = MultiplierGame.difficulty + 4;
         _board = new int[size, size];
+
+        _gridEasy.SetActive(false);
+        _gridMedium.SetActive(false);
+        _gridHard.SetActive(false);
 
         if (MultiplierGame.difficulty == 0)
             _gridEasy.SetActive(true);
@@ -82,9 +87,11 @@ public class GridManager : MonoBehaviour
         // resets targets
         _targets.Clear();
 
-        for (int i = 1; i <= 3; i++)
+        GameObject[] targetTexts = GameObject.FindGameObjectsWithTag("Target");
+
+        for (int i = 0; i < targetTexts.Length; i++)
         {
-            GameObject targetText = GameObject.Find($"Target{i}Text");
+            GameObject targetText = targetTexts[i];
             TMP_Text textObj = targetText.GetComponent<TMP_Text>();
             string targetValue = GenerateTargetString();
 
@@ -94,6 +101,8 @@ public class GridManager : MonoBehaviour
             _targets.Add(targetValue);
             textObj.text = targetValue;
             textObj.name = $"TargetTxt{targetValue}";
+            textObj.fontStyle = FontStyles.Normal;
+            textObj.color = Color.black;
         }
     }
 
@@ -155,5 +164,19 @@ public class GridManager : MonoBehaviour
         coord[0] = x + offsetX;
         coord[1] = y + offsetY;
         return coord;
+    }
+
+
+    /// <summary>
+    /// Clears all drawn green lines from the grid
+    /// </summary>
+    public static void ClearAnsLines()
+    {
+        ansLines.ForEach(delegate (LineRenderer ansLine)
+        {
+            if (ansLine != null)
+                ansLine.enabled = false;
+        });
+        ansLines.Clear();
     }
 }

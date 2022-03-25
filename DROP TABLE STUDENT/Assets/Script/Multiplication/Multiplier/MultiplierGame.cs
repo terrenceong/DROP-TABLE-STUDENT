@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
@@ -17,14 +18,10 @@ public class MultiplierGame : MonoBehaviour
     private static int time;
     private static bool multTutWatched = false;
     public static bool running;
-    public static int difficulty = 1;
+    public static int difficulty = 0;
 
     private void Start()
     {
-        // resets game state on start
-        time = 0;
-        GridManager.answered = 0;
-
         _gridManager = GameObject.Find("GameContainer").GetComponent<GridManager>();
 
         if (multTutWatched)
@@ -58,7 +55,11 @@ public class MultiplierGame : MonoBehaviour
 
     public void StartGame()
     {
+        // resets game state on start
+        time = 0;
+        GridManager.answered = 0;
         running = true;
+
         _gridManager.InitBoard();
         _gridManager.DrawTargets();
     }
@@ -74,6 +75,29 @@ public class MultiplierGame : MonoBehaviour
 
         _gameOverText.SetActive(true);
         running = false;
+
+        if (difficulty == 2)
+            StartCoroutine(DelayedReturn(2.5f));
+        else
+        {
+            difficulty++;
+            StartCoroutine(DelayedReset(2.5f));
+        }
+    }
+
+
+    private IEnumerator DelayedReset(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        _gameOverText.SetActive(false);
+        GridManager.ClearAnsLines();
+        StartGame();
+    }
+
+    private IEnumerator DelayedReturn(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        ReturnMainMenu();
     }
 
 

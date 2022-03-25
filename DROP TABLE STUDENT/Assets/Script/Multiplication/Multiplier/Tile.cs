@@ -170,6 +170,8 @@ public class Tile : MonoBehaviour
         ansLine.SetPosition(0, sourcePos);
         ansLine.SetPosition(1, destPos);
 
+        GridManager.ansLines.Add(ansLine);
+
         if (GridManager.answered == 3)
         {
             GameObject canvas = GameObject.Find("Canvas");
