@@ -119,6 +119,9 @@ public class Leaderboards : MonoBehaviour
             string username = (string)score["username"];
             string score_val = (string)score["score_value"];
 
+            if (username.Length > 9)
+                username = username.Substring(0, 10) + "..";
+
             GameObject scoreObject = GameObject.Find("Score" + i);
             scoreObject.GetComponent<Text>().text = $"{username}: {score_val}";
         }
