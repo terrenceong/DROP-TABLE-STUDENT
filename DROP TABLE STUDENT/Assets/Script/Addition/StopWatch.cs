@@ -25,7 +25,16 @@ public class StopWatch : MonoBehaviour
         }
         else
         {
-            Debug.Log(currTime);//To Pass to LeaderBoard
+            if(AnswerStatus.level == 1)
+            {
+                AnswerStatus.timing1 = currTime;
+                Debug.Log(AnswerStatus.timing1);
+            }
+            else
+            {
+                AnswerStatus.timing2 = currTime;
+                Debug.Log(AnswerStatus.timing2);
+            }
         }
     }
 

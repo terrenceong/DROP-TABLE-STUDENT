@@ -22,6 +22,8 @@ public class MsgController : MonoBehaviour
         if(AnswerStatus.level >= 2)
         {
             AnswerStatus.level = 1;
+            float score = AnswerStatus.timing1 + AnswerStatus.timing2;
+            Leaderboards.UploadScore(0, score);
             SceneManager.LoadScene("Topic_Chara_Selection");
         }   
         else
