@@ -22,11 +22,11 @@ TagManager:
   - 
   - Water
   - UI
-  - Background
-  - 
-  - 
-  - 
-  - 
+  - Walls
+  - Instructions
+  - Ans
+  - Balls
+  - Plus & Equals sign
   - 
   - 
   - 
@@ -54,4 +54,19 @@ TagManager:
     locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Walls
+    uniqueID: 338100117
+    locked: 0
+  - name: Ans
+    uniqueID: 779560905
+    locked: 0
+  - name: Instructions
+    uniqueID: 2578803909
+    locked: 0
+  - name: Balls
+    uniqueID: 4131330973
+    locked: 0
+  - name: Plus & Equals sign
+    uniqueID: 3574528455
     locked: 0

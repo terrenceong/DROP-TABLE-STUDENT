@@ -7,13 +7,16 @@ using UnityEngine.SceneManagement;
 public class MsgController : MonoBehaviour
 {
     [SerializeField] private Text GameEnd;
+    GameObject TutorialPopup;
+    public static bool start = false;
+
     void Start()
     {
+        TutorialPopup=GameObject.Find("Tutorial Popup");
         AnswerStatus.setAns1(0);
         AnswerStatus.setAns2(0);
         AnswerStatus.setAns3(0);
-        AnswerStatus.correct = -1;
-        displayLevel(); 
+        AnswerStatus.correct = -1;  
     }
 
     IEnumerator changeSceneAdd(int waitTime)
@@ -28,6 +31,8 @@ public class MsgController : MonoBehaviour
         }   
         else
         {
+            CircleScript cir = GameObject.FindObjectOfType(typeof(CircleScript)) as CircleScript;
+            cir.created = false;
             AnswerStatus.level+=1;
             SceneManager.LoadScene("Addition");
         }
@@ -57,11 +62,19 @@ public class MsgController : MonoBehaviour
         }
     }
 
-    void displayLevel()
+    public void displayLevel()
     {
         GameEnd.GetComponent<Text>().text = ("Level "+AnswerStatus.level);
         GameEnd.GetComponent<Text>().fontSize = 250;
         GameEnd.GetComponent<Text>().color = Color.white;
         GameEnd.GetComponent<Text>().enabled = true;
+    }
+
+    public void HidePopup()
+    {
+        TutorialPopup.SetActive(false);
+        start = true;
+        StopWatch sw = GameObject.FindObjectOfType(typeof(StopWatch)) as StopWatch;
+        sw.startTime();
     }
 }

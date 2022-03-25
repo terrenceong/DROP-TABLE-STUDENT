@@ -31,12 +31,12 @@ public class Leaderboards : MonoBehaviour
     /// </summary>
     /// <param name="gameType"></param>
     /// <param name="score"></param>
-    public static void UploadScore(int gameType, int score)
+    public static void UploadScore(int gameType, float score)
     {
         WWWForm form = new WWWForm();
         form.AddField("username", Login_Register_Script.username);
         form.AddField("gameType", gameType);
-        form.AddField("score", score);
+        form.AddField("score", score.ToString("#.00"));
 
         UnityWebRequest www = UnityWebRequest.Post(uploadHost, form);
         www.timeout = 3;

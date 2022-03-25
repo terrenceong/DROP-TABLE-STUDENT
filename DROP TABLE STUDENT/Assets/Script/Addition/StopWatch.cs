@@ -7,7 +7,8 @@ public class StopWatch : MonoBehaviour
 {
     float currTime;
     public Text currTimeText;
-    bool isActive = true;
+    bool isActive = false;
+    public bool start = false;
 
     // Start is called before the first frame update
     void Start()
@@ -42,4 +43,9 @@ public class StopWatch : MonoBehaviour
         isActive = false;
     }
 
+    public void startTime()
+    {
+        isActive = true;
+        start = true;
+    }
 }
