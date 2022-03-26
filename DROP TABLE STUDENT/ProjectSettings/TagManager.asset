@@ -64,11 +64,11 @@ TagManager:
   - name: Tiles
     uniqueID: 4029917479
     locked: 0
-  - name: Instructions
-    uniqueID: 2578803909
-    locked: 0
   - name: Balls
     uniqueID: 4131330973
+    locked: 0
+  - name: Instructions
+    uniqueID: 2578803909
     locked: 0
   - name: Plus & Equals sign
     uniqueID: 3574528455
