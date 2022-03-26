@@ -37,11 +37,11 @@ public class Portal : MonoBehaviour
         }
         if(complete && cdTimer<=0)
         {
-           /*if(streakShownValue > 0)
+           if(streakShownValue > 0)
             {
                 Debug.Log(streakShownValue);
                 Leaderboards.UploadScore(1, streakShownValue);
-            }*/
+            }
                
            // validateText.text = "Times up!";
             //validateText.GetComponent<Text>().enabled = true;
