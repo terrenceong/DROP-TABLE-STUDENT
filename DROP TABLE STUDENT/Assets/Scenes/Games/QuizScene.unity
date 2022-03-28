@@ -1991,7 +1991,7 @@ Canvas:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 840167345}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_RenderMode: 0
   m_Camera: {fileID: 0}
@@ -3176,7 +3176,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.035169084, y: 0.0545134}
   m_AnchorMax: {x: 0.96253043, y: 0.44700003}
-  m_AnchoredPosition: {x: -0.39990234, y: 0.7000122}
+  m_AnchoredPosition: {x: -0.3998413, y: 0.7000122}
   m_SizeDelta: {x: -2.4, y: -1.9000015}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1564835494
