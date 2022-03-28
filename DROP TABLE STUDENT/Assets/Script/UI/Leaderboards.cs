@@ -11,13 +11,14 @@ using Newtonsoft.Json.Linq;
 
 public class Leaderboards : MonoBehaviour
 {
+    public GameObject gameTypeHeader;
     private static string uploadHost = "172.21.148.170/uploadscore";
     private string leaderboardsHost = "172.21.148.170/leaderboards";
 
     // Start is called before the first frame update
     void Start()
     {
-
+        ShowAddition();
     }
 
     // Update is called once per frame
@@ -45,21 +46,25 @@ public class Leaderboards : MonoBehaviour
 
     public void ShowAddition()
     {
+        gameTypeHeader.GetComponent<Text>().text = "Addition Scores";
         StartCoroutine(RetrieveLeaderboards(0));
     }
 
     public void ShowSubtraction()
     {
+        gameTypeHeader.GetComponent<Text>().text = "Subtraction Scores";
         StartCoroutine(RetrieveLeaderboards(1));
     }
 
     public void ShowMultiplication()
     {
+        gameTypeHeader.GetComponent<Text>().text = "Multiplication Scores";
         StartCoroutine(RetrieveLeaderboards(2));
     }
 
     public void ShowDivision()
     {
+        gameTypeHeader.GetComponent<Text>().text = "Division Scores";
         StartCoroutine(RetrieveLeaderboards(3));
     }
 
