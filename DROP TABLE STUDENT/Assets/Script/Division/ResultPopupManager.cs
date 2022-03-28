@@ -28,8 +28,9 @@ public class ResultPopupManager : PopupManager
         int levelNo = DivisionLevel.levelNo;
 
         // set score
-        Debug.Log(String.Format("ResultPopupManager: Final score is {0}.", score));
-        finalScoreText.text = String.Format("Score\n{0}", score);
+        Debug.Log(String.Format("ResultPopupManager: Score is {0}.", score));
+        String scoreMsgFormatStr = levelNo == DivisionLevel.LevelCap ? "Total Score\n{0}" : "Level Score\n{0}";
+        finalScoreText.text = String.Format(scoreMsgFormatStr, score);
 
         // set result message
         if (passed){
