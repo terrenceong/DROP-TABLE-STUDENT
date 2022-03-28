@@ -35,20 +35,6 @@ public class SwipeManager : MonoBehaviour {
         _fingerUpTime = DateTime.Now;
         CheckSwipe();
       }
-
-      foreach (var touch in Input.touches) {
-        if (touch.phase == TouchPhase.Began) {
-          _fingerDown = touch.position;
-          _fingerUp = touch.position;
-          _fingerDownTime = DateTime.Now;
-        }
-
-        if (touch.phase == TouchPhase.Ended) {
-          _fingerDown = touch.position;
-          _fingerUpTime = DateTime.Now;
-          CheckSwipe();
-        }
-      }
     }
   }
 
