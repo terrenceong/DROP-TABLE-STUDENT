@@ -9,9 +9,10 @@ public class DivisionLevel : MonoBehaviour{
 
     private System.Random randomiser = new System.Random();
 
-    public int score = 0;
+    private int score = 0;
     public int passingScore = 10;
     public static int levelNo = 1;
+    public const int LevelCap = 2;
     private int factorCap;
     private int productCap;
     private bool actualAnswer;
@@ -26,16 +27,24 @@ public class DivisionLevel : MonoBehaviour{
         EventManager.instance.onSwipeLeft.AddListener(getTrueAnswer);
         EventManager.instance.onSwipeRight.AddListener(getFalseAnswer);
         EventManager.instance.onTimeout.AddListener(getLevelResult);
+        EventManager.instance.onRestartLevel.AddListener(startLevel);
+        EventManager.instance.onNextLevel.AddListener(startNextLevel);
 
-        startGame();
+        levelNo = 1;
+        startLevel();
     }
 
-    private void startGame(){
-        if (levelNo.Equals(1)) factorCap = 10;
-        else factorCap = 12;
+    private void startLevel(){
+        factorCap = levelNo == 2? 12: 10;
         productCap = factorCap * factorCap;
+        score = 0;
 
         generateNewQuestion();
+    }
+
+    private void startNextLevel(){
+        levelNo++;
+        startLevel();
     }
 
     public void getTrueAnswer(){
@@ -68,8 +77,10 @@ public class DivisionLevel : MonoBehaviour{
     }
 
     private void decScore(){
-        scoreText.text = String.Format("Score\n{0}", --score);
-        Debug.Log(String.Format("Decrease score to {0}.", score));
+        if (score > 0){
+            scoreText.text = String.Format("Score\n{0}", --score);
+            Debug.Log(String.Format("Decrease score to {0}.", score));
+        }
     }
 
     private void generateNewQuestion(){
@@ -92,6 +103,6 @@ public class DivisionLevel : MonoBehaviour{
 
     private void getLevelResult(){
         bool passed = (score >= passingScore) ? true : false;
-        EventManager.instance.result(levelNo, passed, score);
+        EventManager.instance.result(passed, score);
     }
 }

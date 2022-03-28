@@ -13,6 +13,7 @@ public class ResultPopupManager : PopupManager
     public Text resultStatusText;
     public Text finalScoreText;
     private GameObject buttonPrefab;
+    private GameObject buttonContainer;
     private const int MaxButtonNo = 2;
     private const float ButtonHoriProp = 1f / (2 * MaxButtonNo + 1); // for n buttons, there are n+1 spaces inbetween. so total intercals is 2n+1.
 
@@ -21,12 +22,12 @@ public class ResultPopupManager : PopupManager
 
         Debug.Log(String.Format("ResultPopupManager: Horizontal proportion of buttons will be {0}.", ButtonHoriProp));
         buttonPrefab = Resources.Load("Prefabs/Division/Button", typeof(GameObject)) as GameObject;
-        if (buttonPrefab == null){
-            Debug.Log("ResultPopupManager: Button prefab not found.");
-        }
+        buttonContainer = GameObject.Find("Result Button Container");
     }
 
-    public void pop(int levelNo, bool passed, int score){
+    public void pop( bool passed, int score){
+        int levelNo = DivisionLevel.levelNo;
+
         // set score
         Debug.Log(String.Format("ResultPopupManager: Final score is {0}.", score));
         finalScoreText.text = String.Format("Score\n{0}", score);
@@ -44,21 +45,25 @@ public class ResultPopupManager : PopupManager
 
         // set buttons
         GameObject backButton =  createButton("BACK", back);
-        setButtons(new GameObject[]{backButton});
+        GameObject actionButton = null;
+        if (passed){
+            if (levelNo == 1) actionButton = createButton("CONTINUE", continue_);
+        } else actionButton = createButton("RETRY", retry);
+        GameObject[] buttons = actionButton == null ? new GameObject[]{backButton} : new GameObject[]{backButton, actionButton};
+        setButtons(buttons);
 
         base.pop();
     }
 
     private GameObject createButton(String buttonText, UnityAction buttonAction){
         GameObject button = (GameObject)Instantiate(buttonPrefab);
-        button.GetComponent<Button>().onClick.AddListener(() => back());
+        button.GetComponent<Button>().onClick.AddListener(buttonAction);
         button.transform.GetChild(0).GetComponent<Text>().text = buttonText;
         Debug.Log(String.Format("ResultPopupManager: {0} button created.", buttonText));
         return button;
     }
 
     private void setButtons(GameObject[] buttons){
-        GameObject buttonContainer = GameObject.Find("Result Button Container");
         float spaceHoriProp = (1 - (ButtonHoriProp * buttons.Length)) / (buttons.Length + 1);
         for (int i=0; i<buttons.Length;i++){
             GameObject button = buttons[i];
@@ -73,10 +78,26 @@ public class ResultPopupManager : PopupManager
         }
     }
 
+    private void removeButtons(){
+        foreach (Transform child in buttonContainer.transform) GameObject.Destroy(child.gameObject);
+    }
+
     public void back(){
-        Debug.Log("back clicked");
+        Debug.Log("ResultPopupManager: Back button clicked");
         SceneManager.LoadScene("Topic_Chara_Selection", LoadSceneMode.Single);
     }
 
-    public void nextLevel(){}
+    public void retry(){
+        Debug.Log("ResultPopupManager: Retry button clicked");
+        removeButtons();
+        base.close();
+        EventManager.instance.restartLevel();
+    }
+
+    public void continue_(){
+        Debug.Log("ResultPopupManager: Continue button clicked");
+        removeButtons();
+        base.close();
+        EventManager.instance.nextLevel();
+    }
 }

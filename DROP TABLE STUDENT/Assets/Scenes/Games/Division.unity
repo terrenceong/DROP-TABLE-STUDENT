@@ -123,56 +123,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &89280424
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 89280425}
-  - component: {fileID: 89280426}
-  m_Layer: 5
-  m_Name: SwipeManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &89280425
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 89280424}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1242470698}
-  m_RootOrder: 5
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &89280426
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 89280424}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9dc309752dfb41649b2a648406813281, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  swipeThreshold: 40
-  timeThreshold: 0.3
 --- !u!1 &161263843
 GameObject:
   m_ObjectHideFlags: 0
@@ -1338,8 +1288,9 @@ GameObject:
   - component: {fileID: 1242470700}
   - component: {fileID: 1242470699}
   - component: {fileID: 1242470701}
+  - component: {fileID: 1242470702}
   m_Layer: 5
-  m_Name: Game
+  m_Name: Division Game
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1361,7 +1312,7 @@ RectTransform:
   - {fileID: 708283160}
   - {fileID: 666793136}
   - {fileID: 865550474}
-  - {fileID: 89280425}
+  - {fileID: 1646981480}
   m_Father: {fileID: 1451039462}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1420,11 +1371,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73ec0b182402b3a4891edb53ae4cd24c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  score: 0
   passingScore: 10
   scoreText: {fileID: 828785595}
   questionText: {fileID: 708283161}
   answerText: {fileID: 865550475}
+--- !u!114 &1242470702
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1242470697}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9dc309752dfb41649b2a648406813281, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  swipeThreshold: 40
+  timeThreshold: 0.3
 --- !u!1 &1289272562
 GameObject:
   m_ObjectHideFlags: 0
@@ -1592,7 +1556,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efad7202d5713054aaace08630629c3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  duration: 3
+  duration: 30
 --- !u!1 &1451039457
 GameObject:
   m_ObjectHideFlags: 0
@@ -1689,7 +1653,6 @@ RectTransform:
   - {fileID: 545804694}
   - {fileID: 1469667171}
   - {fileID: 161263844}
-  - {fileID: 1646981480}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1866,11 +1829,11 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1646981479}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1451039462}
+  m_Father: {fileID: 1242470698}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -2101,6 +2064,12 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  onRestartLevel:
+    m_PersistentCalls:
+      m_Calls: []
+  onNextLevel:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1814297194
 GameObject:
   m_ObjectHideFlags: 0

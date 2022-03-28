@@ -18,6 +18,8 @@ public class SwipeManager : MonoBehaviour {
 
   void Start(){
     EventManager.instance.onTimeout.AddListener(disable);
+    EventManager.instance.onRestartLevel.AddListener(enable);
+    EventManager.instance.onNextLevel.AddListener(enable);
   }
 
   private void Update () {
@@ -72,6 +74,10 @@ public class SwipeManager : MonoBehaviour {
     }
   }
 
+  private void enable(){
+    Debug.Log("SwipeManager: Swipe manager enabled.");
+    swipeEnabled = true;
+  }
   private void disable(){
     Debug.Log("SwipeManager: Swipe manager disabled.");
     swipeEnabled = false;

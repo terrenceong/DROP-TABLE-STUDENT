@@ -14,6 +14,9 @@ public class Timer : MonoBehaviour
 
     private void Start()
     {
+        EventManager.instance.onRestartLevel.AddListener(startTimer);
+        EventManager.instance.onNextLevel.AddListener(startTimer);
+
         startTimer();
     }
 
