@@ -18,10 +18,11 @@ public class Portal : MonoBehaviour
     GameObject TutorialPopup;
     public static float cdTimer = 60.0f;
     public Text timeStamp;
-    private static bool start = false;
+    public static bool start = false;
     private static bool tutorialRead = false;
     private static bool complete = false;
-
+    private Transform joystickBG;
+    private Transform joystick;
 
     private void Update()
     {
@@ -52,7 +53,13 @@ public class Portal : MonoBehaviour
     }
     private void Awake()
     {
-     
+        /*joystickBG = GameObject.FindGameObjectWithTag("JoystickBG").GetComponent<Transform>();
+        joystick = GameObject.FindGameObjectWithTag("Joystick").GetComponent<Transform>();
+        if (!start)
+        {
+            joystickBG.GetComponent<Image>().enabled = false;
+            joystick.GetComponent<Image>().enabled = false;
+        }*/
         validateText.GetComponent<Text>().enabled = false;
         streakText.text = "" + (streakShownValue);
     }
@@ -155,6 +162,9 @@ public class Portal : MonoBehaviour
     {
         TutorialPopup.SetActive(false);
         tutorialRead = true;
+        //joystickBG.GetComponent<Image>().enabled = true;
+        //joystick.GetComponent<Image>().enabled = true;
         start = true;
+
     }
 }
