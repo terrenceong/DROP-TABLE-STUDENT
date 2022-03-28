@@ -129,7 +129,6 @@ public class MultiplierGame : MonoBehaviour
 
         _gameOverText.SetActive(true);
         running = false;
-        character.GetComponent<Animator>().Play("win");
 
         if (difficulty == 2)
             StartCoroutine(DelayedReturn(2.5f));
