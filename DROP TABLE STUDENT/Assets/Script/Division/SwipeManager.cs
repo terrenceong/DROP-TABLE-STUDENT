@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.EventSystems;
 //using Utilities; 
 
 // https://stackoverflow.com/questions/41491765/detect-swipe-gesture-direction
@@ -72,6 +73,7 @@ public class SwipeManager : MonoBehaviour {
   }
 
   private void disable(){
+    Debug.Log("SwipeManager: Swipe manager disabled.");
     swipeEnabled = false;
   }
 }

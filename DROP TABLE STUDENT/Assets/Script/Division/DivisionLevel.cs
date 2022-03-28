@@ -27,12 +27,15 @@ public class DivisionLevel : MonoBehaviour{
         EventManager.instance.onSwipeRight.AddListener(getFalseAnswer);
         EventManager.instance.onTimeout.AddListener(getLevelResult);
 
+        startGame();
+    }
+
+    private void startGame(){
         if (levelNo.Equals(1)) factorCap = 10;
         else factorCap = 12;
         productCap = factorCap * factorCap;
 
         generateNewQuestion();
-        
     }
 
     public void getTrueAnswer(){
@@ -89,6 +92,6 @@ public class DivisionLevel : MonoBehaviour{
 
     private void getLevelResult(){
         bool passed = (score >= passingScore) ? true : false;
-        EventManager.instance.result(passed, score);
+        EventManager.instance.result(levelNo, passed, score);
     }
 }

@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.Events;
 
 [System.Serializable]
-public class UnityEventResult : UnityEvent<bool, int>{ }
+public class UnityEventResult : UnityEvent<int, bool, int>{ }
 
 public class EventManager : MonoBehaviour
 {
@@ -33,7 +33,7 @@ public class EventManager : MonoBehaviour
     }
     
     public UnityEventResult onResult;
-    public void result(bool passed, int score){
+    public void result(int levelNo, bool passed, int score){
         Debug.Log("EventManager: Result event started.");
         // move Player into result popup
         GameObject player = GameObject.FindWithTag("Player");
@@ -42,9 +42,12 @@ public class EventManager : MonoBehaviour
         playerRectTransform.anchorMin = new Vector2(0, 0);
         playerRectTransform.anchorMax = new Vector2(1, 1);
         player.transform.SetParent(resultPopup.transform, false);
+        // set player animation
+        player.GetComponent<CharacterManager>().setResultAnimation(passed);
         
-        onResult?.Invoke(passed, score);
+        onResult?.Invoke(levelNo, passed, score);
     }
+    public UnityEvent moveCharacterToResult;
 
     public UnityEvent onCorrect;
     public void correct(){

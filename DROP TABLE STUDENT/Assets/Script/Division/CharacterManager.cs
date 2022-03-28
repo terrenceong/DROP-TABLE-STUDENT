@@ -20,7 +20,6 @@ public class CharacterManager : MonoBehaviour
         // add event actions
         EventManager.instance.onCorrect.AddListener(correct);
         EventManager.instance.onWrong.AddListener(wrong);
-        EventManager.instance.onResult.AddListener(result);
     }
 
     // Update is called once per frame
@@ -53,7 +52,7 @@ public class CharacterManager : MonoBehaviour
         Debug.Log("CharacterManager: Playing character lose animation.");
     }
 
-    public void result(bool passed, int score){
+    public void setResultAnimation(bool passed){
         if (passed) win();
         else lose();
     }
