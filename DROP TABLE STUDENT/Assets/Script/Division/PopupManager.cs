@@ -10,14 +10,12 @@ public class PopupManager : MonoBehaviour
 
     public void pop()
     {
-        gameObject.SetActive(true);
         gameObject.GetComponent<Animator>().SetTrigger("pop");
         Debug.Log("PopupManager: Pop popup.");
     }
 
     public void close(){
         gameObject.GetComponent<Animator>().SetTrigger("close");
-        gameObject.SetActive(false);
         Debug.Log("PopupManager: Close popup.");
     }
 
