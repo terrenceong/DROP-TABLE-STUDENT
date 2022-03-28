@@ -20,6 +20,16 @@ public class MultiplierGame : MonoBehaviour
     public static bool running;
     public static int difficulty = 0;
 
+    public static MultiplierGame instance;
+    [SerializeField]
+    private GameObject[] characters;
+    private static int _charIndex;
+    public static int CharIndex
+    {
+        get { return _charIndex; }
+        set { _charIndex = value; }
+    }
+
     private void Start()
     {
         _gridManager = GameObject.Find("GameContainer").GetComponent<GridManager>();
@@ -49,6 +59,47 @@ public class MultiplierGame : MonoBehaviour
 
             string timeStr = string.Format("{0:00}:{1:00}", min, sec);
             tmpTxt.text = timeStr;
+        }
+    }
+
+
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+
+
+    private void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnLevelFinishedLoading;
+    }
+
+
+    private void OnDisable()
+    {
+        SceneManager.sceneLoaded += OnLevelFinishedLoading;
+    }
+
+
+    private void OnLevelFinishedLoading(Scene scene, LoadSceneMode mode)
+    {
+        if (scene.name == "Multiplication")
+        {
+            if (GameObject.FindWithTag("Player") == null)
+            {
+                GameObject sprite = Instantiate(characters[_charIndex], new Vector3(-7, -1.5f, 1), new Quaternion());
+                Transform spriteTransform = sprite.GetComponent<Transform>();
+                spriteTransform.localScale = new Vector3(-2, 2, 1);
+            }
+
         }
     }
 

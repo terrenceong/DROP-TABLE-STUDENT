@@ -20,7 +20,9 @@ public class CharacterManager : MonoBehaviour
         // add event actions
         EventManager.instance.onCorrect.AddListener(correct);
         EventManager.instance.onWrong.AddListener(wrong);
-        EventManager.instance.onResult.AddListener(result);
+        EventManager.instance.onResult.AddListener(moveToResult);
+        EventManager.instance.onRestartLevel.AddListener(moveToGame);
+        EventManager.instance.onNextLevel.AddListener(moveToGame);
     }
 
     // Update is called once per frame
@@ -29,32 +31,59 @@ public class CharacterManager : MonoBehaviour
         
     }
 
-    public void correct()
+    private void idle(){
+        character.GetComponent<Animator>().SetTrigger("idle");
+        Debug.Log("CharacterManager: Playing character correct animation.");
+    }
+
+    private void correct()
     {
         character.GetComponent<Animator>().SetTrigger("correct");
         Debug.Log("CharacterManager: Playing character correct animation.");
     }
 
-    public void wrong()
+    private void wrong()
     {
         character.GetComponent<Animator>().SetTrigger("wrong");
         Debug.Log("CharacterManager: Playing character wrong animation.");
     }
 
-    public void win()
+    private void win()
     {
         character.GetComponent<Animator>().SetTrigger("win");
         Debug.Log("CharacterManager: Playing character win animation.");
     }
 
-    public void lose()
+    private void lose()
     {
         character.GetComponent<Animator>().SetTrigger("lose");
         Debug.Log("CharacterManager: Playing character lose animation.");
     }
 
-    public void result(bool passed, int score){
+    private void setResultAnimation(bool passed){
         if (passed) win();
         else lose();
+    }
+
+    private void moveToResult(bool passed, int score){
+        // move Player into result popup
+        GameObject resultPopup = GameObject.Find("Result Popup Player");
+        RectTransform playerRectTransform = gameObject.GetComponent<RectTransform>();
+        playerRectTransform.anchorMin = new Vector2(0, 0);
+        playerRectTransform.anchorMax = new Vector2(1, 1);
+        gameObject.transform.SetParent(resultPopup.transform, false);
+        // set player animation
+        setResultAnimation(passed);
+    }
+
+    private void moveToGame(){
+        // move Player into result popup
+        GameObject game = GameObject.Find("Division Game");
+        RectTransform playerRectTransform = gameObject.GetComponent<RectTransform>();
+        playerRectTransform.anchorMin = new Vector2(0, 0);
+        playerRectTransform.anchorMax = new Vector2(0.4f, 0.75f);
+        gameObject.transform.SetParent(game.transform, false);
+        // set player animation
+        idle();
     }
 }

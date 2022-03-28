@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.EventSystems;
 //using Utilities; 
 
 // https://stackoverflow.com/questions/41491765/detect-swipe-gesture-direction
@@ -17,6 +18,8 @@ public class SwipeManager : MonoBehaviour {
 
   void Start(){
     EventManager.instance.onTimeout.AddListener(disable);
+    EventManager.instance.onRestartLevel.AddListener(enable);
+    EventManager.instance.onNextLevel.AddListener(enable);
   }
 
   private void Update () {
@@ -31,20 +34,6 @@ public class SwipeManager : MonoBehaviour {
         _fingerDown = Input.mousePosition;
         _fingerUpTime = DateTime.Now;
         CheckSwipe();
-      }
-
-      foreach (var touch in Input.touches) {
-        if (touch.phase == TouchPhase.Began) {
-          _fingerDown = touch.position;
-          _fingerUp = touch.position;
-          _fingerDownTime = DateTime.Now;
-        }
-
-        if (touch.phase == TouchPhase.Ended) {
-          _fingerDown = touch.position;
-          _fingerUpTime = DateTime.Now;
-          CheckSwipe();
-        }
       }
     }
   }
@@ -71,7 +60,12 @@ public class SwipeManager : MonoBehaviour {
     }
   }
 
+  private void enable(){
+    Debug.Log("SwipeManager: Swipe manager enabled.");
+    swipeEnabled = true;
+  }
   private void disable(){
+    Debug.Log("SwipeManager: Swipe manager disabled.");
     swipeEnabled = false;
   }
 }
