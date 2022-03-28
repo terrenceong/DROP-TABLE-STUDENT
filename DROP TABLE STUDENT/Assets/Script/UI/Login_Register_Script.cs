@@ -13,7 +13,7 @@ public class Login_Register_Script : MonoBehaviour
     public GameObject loginStatusLbl;
     public GameObject usernameTxt;
     public GameObject passwordTxt;
-    public static string username = "give me a name";
+    public static string username = "dummy";
     private string password;
     private string form;
     private string host = "172.21.148.170/login";
@@ -27,8 +27,8 @@ public class Login_Register_Script : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        username = usernameTxt.GetComponent<InputField>().text;
-        password = passwordTxt.GetComponent<InputField>().text;
+        // username = usernameTxt.GetComponent<InputField>().text;
+        // password = passwordTxt.GetComponent<InputField>().text;
     }
 
     IEnumerator Login()
@@ -54,7 +54,15 @@ public class Login_Register_Script : MonoBehaviour
 
     public void LoginButton()
     {
+        username = usernameTxt.GetComponent<InputField>().text;
+        password = passwordTxt.GetComponent<InputField>().text;
         StartCoroutine(Login());
+    }
+
+    public void GuestLoginButton()
+    {
+        username = "Guest_" + UnityEngine.Random.Range(10000, 99999);
+        SceneManager.LoadScene("Topic_Chara_Selection");
     }
 
     public void RegisterButton()

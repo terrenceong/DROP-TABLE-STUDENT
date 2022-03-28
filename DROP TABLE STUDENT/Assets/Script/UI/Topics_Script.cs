@@ -24,7 +24,9 @@ namespace Topics
             GameMgr.CharIndex = selectedChar; // 0 OR 1 base on selected character Subtraction Mgr
             AddtionGameMgr.CharIndex = selectedChar; // Addtion Mgr
             CharacterManager.CharIndex = selectedChar; // Division Mgr
-            MultiplicationMgr.CharIndex = selectedChar;
+            MultiplierGame.CharIndex = selectedChar;
+
+            GameObject.Find("Username").GetComponent<Text>().text = Login_Register_Script.username;
 
             /*FinalBoss = GameObject.Find("Final Boss");
             for (int i = 0; i < 7; i++){
@@ -41,7 +43,7 @@ namespace Topics
             GameMgr.CharIndex = selectedChar; // 0 OR 1 base on selected character Subtraction Mgr
             AddtionGameMgr.CharIndex = selectedChar; // Addtion Mgr
             CharacterManager.CharIndex = selectedChar; // Division Mgr
-            MultiplicationMgr.CharIndex = selectedChar;
+            MultiplierGame.CharIndex = selectedChar;
             if (selectedChar == 0)
             {
                 border2.GetComponent<Image>().enabled = false;
