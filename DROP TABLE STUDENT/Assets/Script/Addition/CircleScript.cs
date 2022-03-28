@@ -9,14 +9,13 @@ public class CircleScript : MonoBehaviour
     void start()
     {
         created = false;
+        
     }
 
     // Update is called once per frame
     void Update()
     {
         StopWatch sw = GameObject.FindObjectOfType(typeof(StopWatch)) as StopWatch;
-        Debug.Log(created);
-        Debug.Log(sw.start);
         if(sw.start && !created)
         {
             int max;

@@ -43,7 +43,7 @@ public class AddtionGameMgr : MonoBehaviour
         {
             if (GameObject.FindWithTag("Player") == null)
             {
-                characters[_charIndex].transform.position = new Vector3((float)7.19, (float)(-3.12), 0);
+                characters[_charIndex].transform.position = new Vector3((float)9.6419, (float)(-3.05), 0);
                 Instantiate(characters[_charIndex]);
             }
                

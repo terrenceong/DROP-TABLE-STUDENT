@@ -13,6 +13,12 @@ public class MsgController : MonoBehaviour
     void Start()
     {
         TutorialPopup=GameObject.Find("Tutorial Popup");
+        if(AnswerStatus.readInst)
+        {
+            TutorialPopup.SetActive(false);
+            StopWatch sw = GameObject.FindObjectOfType(typeof(StopWatch)) as StopWatch;
+            sw.startTime();
+        }
         AnswerStatus.setAns1(0);
         AnswerStatus.setAns2(0);
         AnswerStatus.setAns3(0);
@@ -73,7 +79,7 @@ public class MsgController : MonoBehaviour
     public void HidePopup()
     {
         TutorialPopup.SetActive(false);
-        start = true;
+        AnswerStatus.readInst = true;
         StopWatch sw = GameObject.FindObjectOfType(typeof(StopWatch)) as StopWatch;
         sw.startTime();
     }
