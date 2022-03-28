@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Events;
-using UnityEngine.SceneManagement;
 
 public class ResultPopupManager : PopupManager
 {
@@ -44,7 +43,7 @@ public class ResultPopupManager : PopupManager
         }
 
         // set buttons
-        GameObject backButton =  createButton("BACK", back);
+        GameObject backButton =  createButton("BACK", EventManager.instance.back);
         GameObject actionButton = null;
         if (passed){
             if (levelNo == 1) actionButton = createButton("CONTINUE", continue_);
@@ -80,11 +79,6 @@ public class ResultPopupManager : PopupManager
 
     private void removeButtons(){
         foreach (Transform child in buttonContainer.transform) GameObject.Destroy(child.gameObject);
-    }
-
-    public void back(){
-        Debug.Log("ResultPopupManager: Back button clicked");
-        SceneManager.LoadScene("Topic_Chara_Selection", LoadSceneMode.Single);
     }
 
     public void retry(){

@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 [System.Serializable]
 public class UnityEventResult : UnityEvent<bool, int>{ }
@@ -58,5 +59,10 @@ public class EventManager : MonoBehaviour
         Debug.Log("EventManager: Start Next Level event started.");
         DivisionLevel.levelNo++;
         onStartLevel?.Invoke();
+    }
+
+    public void back(){
+        Debug.Log("EventManager: Back event started");
+        SceneManager.LoadScene("Topic_Chara_Selection", LoadSceneMode.Single);
     }
 }
