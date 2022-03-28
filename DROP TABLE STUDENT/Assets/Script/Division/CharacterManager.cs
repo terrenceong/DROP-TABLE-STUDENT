@@ -21,8 +21,7 @@ public class CharacterManager : MonoBehaviour
         EventManager.instance.onCorrect.AddListener(correct);
         EventManager.instance.onWrong.AddListener(wrong);
         EventManager.instance.onResult.AddListener(moveToResult);
-        EventManager.instance.onRestartLevel.AddListener(moveToGame);
-        EventManager.instance.onNextLevel.AddListener(moveToGame);
+        EventManager.instance.onStartLevel.AddListener(moveToGame);
     }
 
     // Update is called once per frame

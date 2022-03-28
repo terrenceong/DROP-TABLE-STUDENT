@@ -18,8 +18,7 @@ public class SwipeManager : MonoBehaviour {
 
   void Start(){
     EventManager.instance.onTimeout.AddListener(disable);
-    EventManager.instance.onRestartLevel.AddListener(enable);
-    EventManager.instance.onNextLevel.AddListener(enable);
+    EventManager.instance.onStartLevel.AddListener(enable);
   }
 
   private void Update () {

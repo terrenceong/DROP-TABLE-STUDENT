@@ -91,13 +91,13 @@ public class ResultPopupManager : PopupManager
         Debug.Log("ResultPopupManager: Retry button clicked");
         removeButtons();
         base.close();
-        EventManager.instance.restartLevel();
+        EventManager.instance.startLevel();
     }
 
     public void continue_(){
         Debug.Log("ResultPopupManager: Continue button clicked");
         removeButtons();
         base.close();
-        EventManager.instance.nextLevel();
+        EventManager.instance.startNextLevel();
     }
 }
