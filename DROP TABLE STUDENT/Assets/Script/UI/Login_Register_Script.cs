@@ -44,12 +44,12 @@ public class Login_Register_Script : MonoBehaviour
 
         TMP_Text loginStatus = loginStatusLbl.GetComponent<TMP_Text>();
 
-        if (www.result != UnityWebRequest.Result.Success)
-            loginStatus.text = "Couldn't reach server";
-        else if (www.responseCode == 401)
+        if (www.responseCode == 401)
             loginStatus.text = www.downloadHandler.text;
-        else
+        else if (www.responseCode == 200)
             SceneManager.LoadScene("Topic_Chara_Selection");
+        else
+            loginStatus.text = www.error;
     }
 
     public void LoginButton()
