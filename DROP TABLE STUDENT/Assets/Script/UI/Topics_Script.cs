@@ -26,6 +26,8 @@ namespace Topics
             CharacterManager.CharIndex = selectedChar; // Division Mgr
             MultiplierGame.CharIndex = selectedChar;
 
+            GameObject.Find("Username").GetComponent<Text>().text = Login_Register_Script.username;
+
             /*FinalBoss = GameObject.Find("Final Boss");
             for (int i = 0; i < 7; i++){
                 if (Boss_Prereq[i] == 0){

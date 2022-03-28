@@ -23,6 +23,7 @@ public class MultiplierGame : MonoBehaviour
     public static MultiplierGame instance;
     [SerializeField]
     private GameObject[] characters;
+    public GameObject character = null;
     private static int _charIndex;
     public static int CharIndex
     {
@@ -95,11 +96,10 @@ public class MultiplierGame : MonoBehaviour
         {
             if (GameObject.FindWithTag("Player") == null)
             {
-                GameObject sprite = Instantiate(characters[_charIndex], new Vector3(-7, -1.5f, 1), new Quaternion());
-                Transform spriteTransform = sprite.GetComponent<Transform>();
+                character = Instantiate(characters[_charIndex], new Vector3(-7, -1.5f, 1), new Quaternion());
+                Transform spriteTransform = character.GetComponent<Transform>();
                 spriteTransform.localScale = new Vector3(-2, 2, 1);
             }
-
         }
     }
 
@@ -110,6 +110,9 @@ public class MultiplierGame : MonoBehaviour
         time = 0;
         GridManager.answered = 0;
         running = true;
+
+        TMP_Text tmpTxt = _timerText.GetComponent<TMP_Text>();
+        tmpTxt.text = "00:00";
 
         _gridManager.InitBoard();
         _gridManager.DrawTargets();
@@ -126,6 +129,7 @@ public class MultiplierGame : MonoBehaviour
 
         _gameOverText.SetActive(true);
         running = false;
+        character.GetComponent<Animator>().Play("win");
 
         if (difficulty == 2)
             StartCoroutine(DelayedReturn(2.5f));
