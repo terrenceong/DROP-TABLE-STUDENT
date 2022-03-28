@@ -7,6 +7,7 @@ using UnityEngine.UI;
 
 public class Timer : MonoBehaviour
 {
+    private Text timerTextObject;
     public float duration = 30;
 
     private float timeRemaining;
@@ -16,6 +17,8 @@ public class Timer : MonoBehaviour
     {
         EventManager.instance.onRestartLevel.AddListener(startTimer);
         EventManager.instance.onNextLevel.AddListener(startTimer);
+
+        timerTextObject = gameObject.GetComponent<Text>();
 
         startTimer();
     }
@@ -39,13 +42,14 @@ public class Timer : MonoBehaviour
     public void startTimer(){
         timeRemaining = duration;
         timerRunning = true;
+        timerTextObject.color = Color.cyan;
         Debug.Log(String.Format("Timer: Starting timer for {0} seconds.", (int)Math.Round(timeRemaining)));
     }
 
     public void displayTimer(int time){
-        gameObject.GetComponent<Text>().text = String.Format("{0:00}:{1:00}", time/60, time%60);
+        timerTextObject.text = String.Format("{0:00}:{1:00}", time/60, time%60);
         if (time <= 10){
-            gameObject.GetComponent<Text>().color = Color.red;
+            timerTextObject.color = Color.red;
         }
     }
     
