@@ -49,13 +49,14 @@ public class EventManager : MonoBehaviour
         onWrong?.Invoke();
     }
 
-    public UnityEvent onRestartLevel;
-    public void restartLevel(){
-        onRestartLevel?.Invoke();
+    public UnityEvent onStartLevel;
+    public void startLevel(){
+        Debug.Log("EventManager: Start Level event started.");
+        onStartLevel?.Invoke();
     }
-
-    public UnityEvent onNextLevel;
-    public void nextLevel(){
-        onNextLevel?.Invoke();
+    public void startNextLevel(){
+        Debug.Log("EventManager: Start Next Level event started.");
+        DivisionLevel.levelNo++;
+        onStartLevel?.Invoke();
     }
 }

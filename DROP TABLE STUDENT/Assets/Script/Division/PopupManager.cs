@@ -18,4 +18,8 @@ public class PopupManager : MonoBehaviour
         gameObject.GetComponent<Animator>().SetTrigger("close");
         Debug.Log("PopupManager: Close popup.");
     }
+
+    public void hide(){
+        gameObject.SetActive(false);
+    }
 }

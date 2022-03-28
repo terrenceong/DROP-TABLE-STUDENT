@@ -21,7 +21,7 @@ public class ResultPopupManager : PopupManager
         EventManager.instance.onResult.AddListener(pop);
 
         Debug.Log(String.Format("ResultPopupManager: Horizontal proportion of buttons will be {0}.", ButtonHoriProp));
-        buttonPrefab = Resources.Load("Prefabs/Division/Button", typeof(GameObject)) as GameObject;
+        buttonPrefab = Resources.Load("Prefabs/Button", typeof(GameObject)) as GameObject;
         buttonContainer = GameObject.Find("Result Button Container");
     }
 
@@ -91,13 +91,13 @@ public class ResultPopupManager : PopupManager
         Debug.Log("ResultPopupManager: Retry button clicked");
         removeButtons();
         base.close();
-        EventManager.instance.restartLevel();
+        EventManager.instance.startLevel();
     }
 
     public void continue_(){
         Debug.Log("ResultPopupManager: Continue button clicked");
         removeButtons();
         base.close();
-        EventManager.instance.nextLevel();
+        EventManager.instance.startNextLevel();
     }
 }

@@ -15,12 +15,9 @@ public class Timer : MonoBehaviour
 
     private void Start()
     {
-        EventManager.instance.onRestartLevel.AddListener(startTimer);
-        EventManager.instance.onNextLevel.AddListener(startTimer);
+        EventManager.instance.onStartLevel.AddListener(startTimer);
 
         timerTextObject = gameObject.GetComponent<Text>();
-
-        startTimer();
     }
 
     void Update()

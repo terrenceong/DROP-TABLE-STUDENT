@@ -21,8 +21,7 @@ public class CharacterManager : MonoBehaviour
         EventManager.instance.onCorrect.AddListener(correct);
         EventManager.instance.onWrong.AddListener(wrong);
         EventManager.instance.onResult.AddListener(moveToResult);
-        EventManager.instance.onRestartLevel.AddListener(moveToGame);
-        EventManager.instance.onNextLevel.AddListener(moveToGame);
+        EventManager.instance.onStartLevel.AddListener(moveToGame);
     }
 
     // Update is called once per frame
@@ -33,7 +32,7 @@ public class CharacterManager : MonoBehaviour
 
     private void idle(){
         character.GetComponent<Animator>().SetTrigger("idle");
-        Debug.Log("CharacterManager: Playing character correct animation.");
+        Debug.Log("CharacterManager: Playing character idle animation.");
     }
 
     private void correct()
@@ -72,6 +71,7 @@ public class CharacterManager : MonoBehaviour
         playerRectTransform.anchorMin = new Vector2(0, 0);
         playerRectTransform.anchorMax = new Vector2(1, 1);
         gameObject.transform.SetParent(resultPopup.transform, false);
+        Debug.Log("CharacterManager: Character moved to result pop up.");
         // set player animation
         setResultAnimation(passed);
     }
@@ -83,6 +83,7 @@ public class CharacterManager : MonoBehaviour
         playerRectTransform.anchorMin = new Vector2(0, 0);
         playerRectTransform.anchorMax = new Vector2(0.4f, 0.75f);
         gameObject.transform.SetParent(game.transform, false);
+        Debug.Log("CharacterManager: Character moved to game.");
         // set player animation
         idle();
     }

@@ -27,11 +27,9 @@ public class DivisionLevel : MonoBehaviour{
         EventManager.instance.onSwipeLeft.AddListener(getTrueAnswer);
         EventManager.instance.onSwipeRight.AddListener(getFalseAnswer);
         EventManager.instance.onTimeout.AddListener(getLevelResult);
-        EventManager.instance.onRestartLevel.AddListener(startLevel);
-        EventManager.instance.onNextLevel.AddListener(startNextLevel);
+        EventManager.instance.onStartLevel.AddListener(startLevel);
 
         levelNo = 1;
-        startLevel();
     }
 
     private void startLevel(){
@@ -40,11 +38,6 @@ public class DivisionLevel : MonoBehaviour{
         score = 0;
 
         generateNewQuestion();
-    }
-
-    private void startNextLevel(){
-        levelNo++;
-        startLevel();
     }
 
     public void getTrueAnswer(){
