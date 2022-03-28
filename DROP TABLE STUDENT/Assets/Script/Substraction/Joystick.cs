@@ -40,7 +40,7 @@ public class Joystick : MonoBehaviour
     void Update()
     {
         //movePlayer(new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"))); /* keyboard movement
-        if(Input.GetMouseButtonDown(0))
+        if(Input.GetMouseButtonDown(0) && Portal.start)
         {
 
             pointA = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, Camera.main.transform.position.z));
@@ -54,13 +54,13 @@ public class Joystick : MonoBehaviour
             //outerCircle.GetComponent<SpriteRenderer>().enabled = true;
 
         }
-        if (Input.GetMouseButton(0))
+        if (Input.GetMouseButton(0) && Portal.start)
         {
             touchStart = true;
             myanim.SetBool(WALK_ANIMATION, true);
             pointB = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, Camera.main.transform.position.z));
         }
-        else
+        else if(Portal.start)
         {
             touchStart = false;
             myanim.SetBool(WALK_ANIMATION, false);
@@ -76,7 +76,7 @@ public class Joystick : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        if(touchStart)
+        if(touchStart && Portal.start)
         {
            
             Vector2 offset = pointB - pointA;
