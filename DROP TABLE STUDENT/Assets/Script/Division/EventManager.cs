@@ -11,7 +11,7 @@ public class UnityEventResult : UnityEvent<bool, int>{ }
 public class EventManager : MonoBehaviour
 {
     public static EventManager instance;
-    
+
     private void Awake()
     {
         instance = this;
@@ -50,6 +50,13 @@ public class EventManager : MonoBehaviour
         onWrong?.Invoke();
     }
 
+    public UnityEvent onTutorialRead;
+    public void tutorialRead(){
+        Debug.Log("EventManager: Tutorial Read event started.");
+        onTutorialRead?.Invoke();
+        startLevel();
+    }
+
     public UnityEvent onStartLevel;
     public void startLevel(){
         Debug.Log("EventManager: Start Level event started.");
@@ -58,7 +65,7 @@ public class EventManager : MonoBehaviour
     public void startNextLevel(){
         Debug.Log("EventManager: Start Next Level event started.");
         DivisionLevel.levelNo++;
-        onStartLevel?.Invoke();
+        startLevel();
     }
 
     public void back(){

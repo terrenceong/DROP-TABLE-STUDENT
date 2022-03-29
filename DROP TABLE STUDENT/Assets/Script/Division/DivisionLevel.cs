@@ -9,6 +9,8 @@ public class DivisionLevel : MonoBehaviour{
 
     private System.Random randomiser = new System.Random();
 
+    public static bool tutorialRead = false;
+
     private int levelScore = 0;
     private int totalScore = 0;
     public int passingScoreBase = 10;
@@ -29,12 +31,20 @@ public class DivisionLevel : MonoBehaviour{
         EventManager.instance.onSwipeLeft.AddListener(getTrueAnswer);
         EventManager.instance.onSwipeRight.AddListener(getFalseAnswer);
         EventManager.instance.onTimeout.AddListener(getLevelResult);
+        EventManager.instance.onTutorialRead.AddListener(() => tutorialRead = true);
         EventManager.instance.onStartLevel.AddListener(startLevel);
 
         levelNo = 1;
+
+        if (tutorialRead) {
+            GameObject tutorialPopup = GameObject.Find("Tutorial Popup");
+            tutorialPopup.GetComponent<PopupManager>().hide();
+            startLevel();
+        } 
     }
 
     private void startLevel(){
+        Debug.Log("DivisionLevel: Initializing variables for division level.");
         // set question number cap
         factorCap = levelNo == 2? 10: 5;
         productCap = factorCap * factorCap;
@@ -47,6 +57,7 @@ public class DivisionLevel : MonoBehaviour{
         scoreText.text = String.Format("Score\n{0}", levelScore);
 
         // start game
+        Debug.Log(String.Format("DivisionLevel: Starting division level {0}", levelNo));
         generateNewQuestion();
     }
 

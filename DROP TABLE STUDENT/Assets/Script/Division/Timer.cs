@@ -18,6 +18,8 @@ public class Timer : MonoBehaviour
         EventManager.instance.onStartLevel.AddListener(startTimer);
 
         timerTextObject = gameObject.GetComponent<Text>();
+
+        if (DivisionLevel.tutorialRead) startTimer();
     }
 
     void Update()
