@@ -1,0 +1,86 @@
+<div>
+    <input id="txtUsername" type="text" placeholder="Username">
+    <input id="txtPassword" type="text" placeholder="Password">
+    <input id="txtEmail" type="text" placeholder="Email">
+    <button id="btnRegister" type="button">Register</button>
+    <button id="btnLogin" type="button">Login</button>
+</div>
+
+<div>
+    <input id="txtScoreUsername" type="text" placeholder="Score Username">
+    <input id="txtGameType" type="text" placeholder="Game Type">
+    <input id="txtScore" type="text" , placeholder="Score Value">
+    <button id="btnUploadScore" type="button">Upload Score</button>
+</div>
+<p></p>
+<p></p>
+<div>
+    <header>Retrieve top 5 scores for game type:</header>
+    <button id="btnAddition" type="button">Addition</button>
+    <button id="btnSubtraction" type="button">Subtraction</button>
+    <button id="btnMultiplication" type="button">Multiplication</button>
+    <button id="btnDivision" type="button">Division</button>
+</div>
+
+<script>
+    document.querySelector("#btnRegister").onclick = () => {
+        let username = document.querySelector("#txtUsername").value;
+        let password = document.querySelector("#txtPassword").value;
+        let email = document.querySelector("#txtEmail").value;
+
+        fetch("/register", {
+            method: "POST",
+            headers: { 'Content-Type': 'application/json', "Access-Control-Allow-Origin": "*" },
+            body: JSON.stringify({
+                username: username,
+                password: password,
+                email: email
+            }),
+        });
+    }
+
+    document.querySelector("#btnLogin").onclick = () => {
+        let username = document.querySelector("#txtUsername").value;
+        let password = document.querySelector("#txtPassword").value;
+
+        fetch("/login", {
+            method: "POST",
+            headers: { 'Content-Type': 'application/json', "Access-Control-Allow-Origin": "*" },
+            body: JSON.stringify({
+                username: username,
+                password: password
+            }),
+        });
+    };
+
+    document.querySelector("#btnUploadScore").onclick = () => {
+        let username = document.querySelector("#txtScoreUsername").value;
+        let gameType = parseInt(document.querySelector("#txtGameType").value);
+        let score = parseInt(document.querySelector("#txtScore").value);
+
+        fetch("/uploadscore", {
+            method: "POST",
+            headers: { 'Content-Type': 'application/json', "Access-Control-Allow-Origin": "*" },
+            body: JSON.stringify({
+                username: username,
+                gameType: gameType,
+                score: score
+            }),
+        });
+    }
+
+    let retrieveLeaderboard = (gameType) => {
+        fetch("/leaderboards", {
+            method: "POST",
+            headers: { 'Content-Type': 'application/json', "Access-Control-Allow-Origin": "*" },
+            body: JSON.stringify({
+                gameType: gameType
+            }),
+        });
+    }
+
+    document.querySelector("#btnAddition").onclick = () => retrieveLeaderboard(0);
+    document.querySelector("#btnSubtraction").onclick = () => retrieveLeaderboard(1);
+    document.querySelector("#btnMultiplication").onclick = () => retrieveLeaderboard(2);
+    document.querySelector("#btnDivision").onclick = () => retrieveLeaderboard(3);
+</script>
